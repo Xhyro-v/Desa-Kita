@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1>Daftar Desa</h1>
+
+<ul>
+{% for village in villages %}
+
+<li>
+    <h3>
+        <a href="/villages/{{ village.name }}">
+            Desa {{ village.name }}
+        </a>
+    </h3>
+
+    <p>Kecamatan: {{ village.district }}</p>
+    <p>Kabupaten: {{ village.regency }}</p>
+    <p>Provinsi: {{ village.province }}</p>
+    <p>Penduduk: {{ village.population }}</p>
+    <p>Luas Wilayah: {{ village.area_km2 }} km²</p>
+
+</li>
+
+<hr>
+
+{% endfor %}
+</ul>
+
+{% endblock content %}

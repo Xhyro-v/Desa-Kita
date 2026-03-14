@@ -1,12 +1,5 @@
 {% extends "layout.html" %}
-
 {% block content %}
-
-<h1 id="title">Daftar Desa</h1>
-
-<ul>
-{% for village in villages %}
-
 <li>
     <h3>
         <a href="/villages/{{ village.name }}">
@@ -21,10 +14,4 @@
     <p>Luas Wilayah: {{ village.area_km2 }} km²</p>
 
 </li>
-
-<hr>
-
-{% endfor %}
-</ul>
-
 {% endblock content %}

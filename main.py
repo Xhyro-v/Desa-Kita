@@ -5,11 +5,12 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
+
 app = FastAPI()
 
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 templates = Jinja2Templates(directory="templates")
-
-
 
 villages: list[dict] = [
     {
@@ -146,18 +147,19 @@ def home(request: Request):
         },
     )
 
-@app.get("/Villages/{village_name}", include_in_schema=False)
+@app.get("/villages/{village_name}", include_in_schema=False)
 def post_page(request: Request, village_name : str):
     for village in villages:
         if village.get("name") == village_name:
             district = village["district"]
             return templates.TemplateResponse(
-                "post.html",
-                {
-                    "request": request,
-                    "village": villages,
-                    "district": district,
-                },
+                  "post.html",
+                  {
+                      "request": request,
+                      "village": village,
+                      "district": district,
+                  },
+              
             )
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Post not found")
 
@@ -174,32 +176,46 @@ def get_post(village_name: str):
             return village
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Post not found")
 
+
+
+
+# cari village yang name == village_name
+# kalau ketemu:
+#    render post.html
+# kalau nggak ketemu:
+#    raise 404
+
+
+
+
+
+
 # 
-# @app.exception_handler(StarletteHTTPException)
-# def general_http_exception_handler(request: Request, exception: StarletteHTTPException):
-#     message = (
-#         exception.detail
-#         if exception.detail
-#         else "An error occurred. Please check your request and try again."
-#     )
-# 
-#     if request.url.path.startswith("/api"):
-#         return JSONResponse(
-#             status_code=exception.status_code,
-#             content={"detail": message},
-#         )
-# 
-#     return templates.TemplateResponse(
-#         "error.html",
-#         {
-#             "request": request,
-#             "status_code": exception.status_code,
-#             "title": exception.status_code,
-#             "message": message,
-#         },
-#         status_code=exception.status_code,
-#     )
-# 
+@app.exception_handler(StarletteHTTPException)
+def general_http_exception_handler(request: Request, exception: StarletteHTTPException):
+    message = (
+        exception.detail
+        if exception.detail
+        else "An error occurred. Please check your request and try again."
+    )
+
+    if request.url.path.startswith("/api"):
+        return JSONResponse(
+            status_code=exception.status_code,
+            content={"detail": message},
+        )
+
+    return templates.TemplateResponse(
+        "error.html",
+        {
+            "request": request,
+            "status_code": exception.status_code,
+            "title": exception.status_code,
+            "message": message,
+        },
+        status_code=exception.status_code,
+    )
+
 # 
 # @app.exception_handler(RequestValidationError)
 # def validation_exception_handler(request: Request, exception: RequestValidationError):

@@ -12,169 +12,83 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 templates = Jinja2Templates(directory="templates")
 
-villages: list[dict] = [
+announcements: list[dict] = [
     {
-        "name": "Cibening",
-        "district": "Setu",
-        "regency": "Bekasi",
-        "province": "Jawa Barat",
-        "postal_code": "17320",
-        "population": 12540,
-        "area_km2": 4.3,
-        "households": 3120,
-        "latitude": -6.3551,
-        "longitude": 107.0502
+        "id": 1,
+        "title": "Kerja Bakti Mingguan",
+        "content": "Seluruh warga Desa Cibening diharapkan mengikuti kegiatan kerja bakti pada hari Minggu pukul 07.00 WIB di area balai desa dan jalan utama.",
+        "date": "2026-03-16",
+        "author": "Admin Desa"
     },
     {
-        "name": "Cijengkol",
-        "district": "Setu",
-        "regency": "Bekasi",
-        "province": "Jawa Barat",
-        "postal_code": "17320",
-        "population": 9840,
-        "area_km2": 3.8,
-        "households": 2410,
-        "latitude": -6.3498,
-        "longitude": 107.0411
+        "id": 2,
+        "title": "Jadwal Posyandu Bulan Maret",
+        "content": "Posyandu Melati akan dilaksanakan pada tanggal 20 Maret 2026 pukul 09.00 WIB di Gedung Serbaguna Desa.",
+        "date": "2026-03-15",
+        "author": "Kader Posyandu"
     },
     {
-        "name": "Cikarageman",
-        "district": "Setu",
-        "regency": "Bekasi",
-        "province": "Jawa Barat",
-        "postal_code": "17320",
-        "population": 11020,
-        "area_km2": 4.1,
-        "households": 2755,
-        "latitude": -6.3447,
-        "longitude": 107.0336
+        "id": 3,
+        "title": "Pendaftaran Turnamen Futsal Antar RT",
+        "content": "Dalam rangka memperingati Hari Jadi Desa, akan diadakan turnamen futsal antar RT. Pendaftaran dibuka sampai tanggal 25 Maret 2026.",
+        "date": "2026-03-14",
+        "author": "Karang Taruna"
     },
     {
-        "name": "Ciledug",
-        "district": "Setu",
-        "regency": "Bekasi",
-        "province": "Jawa Barat",
-        "postal_code": "17320",
-        "population": 13210,
-        "area_km2": 4.7,
-        "households": 3310,
-        "latitude": -6.3603,
-        "longitude": 107.0581
+        "id": 4,
+        "title": "Perbaikan Jalan Desa",
+        "content": "Mulai tanggal 18 Maret 2026 akan dilakukan perbaikan jalan di wilayah RT 03. Warga diharapkan berhati-hati saat melintas.",
+        "date": "2026-03-13",
+        "author": "Pemerintah Desa"
     },
     {
-        "name": "Kertarahayu",
-        "district": "Setu",
-        "regency": "Bekasi",
-        "province": "Jawa Barat",
-        "postal_code": "17320",
-        "population": 8750,
-        "area_km2": 3.5,
-        "households": 2100,
-        "latitude": -6.3479,
-        "longitude": 107.0467
-    },
-    {
-        "name": "Lubangbuaya",
-        "district": "Setu",
-        "regency": "Bekasi",
-        "province": "Jawa Barat",
-        "postal_code": "17320",
-        "population": 9650,
-        "area_km2": 3.9,
-        "households": 2360,
-        "latitude": -6.3524,
-        "longitude": 107.0375
-    },
-    {
-        "name": "Mekarwangi",
-        "district": "Setu",
-        "regency": "Bekasi",
-        "province": "Jawa Barat",
-        "postal_code": "17320",
-        "population": 10420,
-        "area_km2": 4.0,
-        "households": 2605,
-        "latitude": -6.3587,
-        "longitude": 107.0294
-    },
-    {
-        "name": "Ragemanunggal",
-        "district": "Setu",
-        "regency": "Bekasi",
-        "province": "Jawa Barat",
-        "postal_code": "17320",
-        "population": 11830,
-        "area_km2": 4.4,
-        "households": 2950,
-        "latitude": -6.3415,
-        "longitude": 107.0449
-    },
-    {
-        "name": "Tamansari",
-        "district": "Setu",
-        "regency": "Bekasi",
-        "province": "Jawa Barat",
-        "postal_code": "17320",
-        "population": 9020,
-        "area_km2": 3.6,
-        "households": 2210,
-        "latitude": -6.3536,
-        "longitude": 107.0528
-    },
-    {
-        "name": "Tamanrahayu",
-        "district": "Setu",
-        "regency": "Bekasi",
-        "province": "Jawa Barat",
-        "postal_code": "17320",
-        "population": 10860,
-        "area_km2": 4.2,
-        "households": 2695,
-        "latitude": -6.3468,
-        "longitude": 107.0397
+        "id": 5,
+        "title": "Pengajian Rutin Jumat Malam",
+        "content": "Pengajian rutin warga akan dilaksanakan setiap Jumat malam setelah sholat Isya di Masjid Al-Ikhlas.",
+        "date": "2026-03-12",
+        "author": "DKM Masjid"
     }
 ]
 
 
 @app.get("/", include_in_schema=False, name="home")
-@app.get("/villages", include_in_schema=False, name="villages")
+@app.get("/announcements", include_in_schema=False, name="announcements")
 def home(request: Request):
     return templates.TemplateResponse(
         "home.html",
         {
             "request": request,
-            "villages": villages,
+            "announcements": announcements,
         },
     )
 
-@app.get("/villages/{village_name}", include_in_schema=False)
-def post_page(request: Request, village_name : str):
-    for village in villages:
-        if village.get("name") == village_name:
-            district = village["district"]
+@app.get("/announcements/{announcements_id}", include_in_schema=False)
+def post_page(request: Request, announcements_id : int):
+    for announcement in announcements:
+        if announcement.get("id") == announcements_id :
             return templates.TemplateResponse(
                   "post.html",
                   {
                       "request": request,
-                      "village": village,
-                      "district": district,
+                      "announcement" : announcement,
                   },
               
             )
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Post not found")
 
 
-@app.get("/api/villages")
+@app.get("/api/announcements")
 def get_posts():
-    return villages
+    return announcements
 
 
-@app.get("/api/villages/{village_name}")
-def get_post(village_name: str):
-    for village in villages:
-        if village.get("name") == village_name.capitalize():
-            return village
+@app.get("/api/announcements/{announcements_id}")
+def get_post(announcements_id: int):
+    for announcement in announcements:
+        if announcement.get("id") == announcements_id :
+            return announcement
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Post not found")
+
 
 
 
@@ -215,6 +129,11 @@ def general_http_exception_handler(request: Request, exception: StarletteHTTPExc
         },
         status_code=exception.status_code,
     )
+
+
+
+
+
 
 # 
 # @app.exception_handler(RequestValidationError)

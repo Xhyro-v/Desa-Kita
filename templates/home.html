@@ -2,23 +2,20 @@
 
 {% block content %}
 
-<h1 id="title">Daftar Desa</h1>
 
 <ul>
-{% for village in villages %}
+{% for announcement in announcements %}
 
 <li>
-    <h3>
-        <a href="/villages/{{ village.name }}">
-            Desa {{ village.name }}
+    <h2 id="title">
+        <a href="/announcements/{{ announcement.id }}">
+             {{ announcement.title }}
         </a>
-    </h3>
+    </h2>
 
-    <p>Kecamatan: {{ village.district }}</p>
-    <p>Kabupaten: {{ village.regency }}</p>
-    <p>Provinsi: {{ village.province }}</p>
-    <p>Penduduk: {{ village.population }}</p>
-    <p>Luas Wilayah: {{ village.area_km2 }} km²</p>
+    <p>{{ announcement.content }}</p>
+    <p>{{ announcement.date }}</p>
+    <p>{{ announcement.author }}</p>
 
 </li>
 

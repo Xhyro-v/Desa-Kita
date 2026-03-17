@@ -1,33 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Desa Kita</title>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='css/main.css') }}">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Desa Kita</title>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="{{ url_for('static', path='css/main.css') }}"
+        />
+    </head>
+    <body>
+        <header>
+            <h1>Desa Kita</h1>
+            <button id="menu-btn">☰</button>
 
-<header>
-    <h1>Desa Kita</h1>
-    <nav class="navbar">
-      <ul class="nav-links">
-        <li><a href="/">Beranda</a></li>
-        <li><a href="/announcements">Pengumuman</a></li>
-        <li><a href="#">Kontak</a></li>
-      </ul>
-    </nav>
-</header>
+            <div id="sidebar" class="sidebar">
+                <button id="close-btn">✖</button>
+                <a href="/">Home</a>
+                <a href="/announcements">Announcements</a>
+                <a href="#">Analytics</a>
+                <a href="#">Settings</a>
+            </div>
+        </header>
 
-<main>
-    {% block content %}
-    {% endblock %}
-</main>
+        <main>{% block content %} {% endblock %}</main>
 
-<footer>
-    <p>&copy; 2026 Project Media Desa - Membangun Digitalisasi Desa</p>
-    <p style="text-align:center;">Naufal</p>
-</footer>
+        <footer>
+            <p>&copy; 2026 Project Media Desa - Membangun Digitalisasi Desa</p>
+            <p style="text-align: center">Naufal</p>
+        </footer>
+        <script>
+            const btn = document.getElementById("menu-btn");
+            const sidebar = document.getElementById("sidebar");
 
-</body>
+            btn.addEventListener("click", () => {
+                sidebar.classList.toggle("active");
+            });
+            const closeBtn = document.getElementById("close-btn");
+
+            closeBtn.addEventListener("click", () => {
+                sidebar.classList.remove("active");
+            });
+
+            document.addEventListener("click", e => {
+                if (!sidebar.contains(e.target) && !btn.contains(e.target)) {
+                    sidebar.classList.remove("active");
+                }
+            });
+        </script>
+    </body>
 </html>

@@ -1,112 +1,146 @@
 /* Reset & Base Styles */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Brand Colors */
+    --color-primary: #2d6a4f;
+    --color-primary-light: #74c69d;
+    --color-secondary: #1b4332;
+
+    /* Accent & Status */
+    --color-accent: #ffb703; /* Untuk pengumuman penting */
+    --color-info: #3a86ff; /* Untuk berita umum */
+    --color-success: #52b788;
+    --color-danger: #e63946;
+
+    /* Neutral Colors */
+    --color-bg: #f8f9fa;
+    --color-card: #ffffff;
+    --color-text-main: #212529;
+    --color-text-muted: #6c757d;
+    --color-border: #dee2e6;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  background-color: #f4f7f6; /* Warna background soft */
-  color: #333;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f7f6; /* Warna background soft */
+    color: #333;
 }
 
 /* Typography */
-h1, h2, h3 {
-  color: #2c3e50;
+h1,
+h2,
+h3 {
+    color: #2c3e50;
 }
 
 /* Header & Navbar */
 header {
-  background: white;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  padding: 1rem 0;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
 }
 
 header h1 {
-  text-align: center;
-  margin-bottom: 1rem;
-  font-size: 1.8rem;
-  color: #2c3e50;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    color: #2c3e50;
 }
 
-.navbar {
-  background-color: #2c3e50;
-  padding: 0.5rem 0;
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* disembunyiin */
+    width: 160px;
+    height: 100%;
+    background: #111;
+    padding-top: 60px;
+
+    transition: 0.3s;
+
+    position: fixed;
 }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 30px; /* Jarak antar menu lebih rapi */
+.sidebar a {
+    display: block;
+    color: var(--color-card);
+    padding: 12px;
+    text-decoration: none;
 }
 
-/* Reset style LI khusus di navbar agar tidak ikut style LI konten */
-.nav-links li {
-  border: none;
-  padding: 0;
-  margin: 0;
+.sidebar.active {
+    left: 0; /* muncul */
 }
 
-.nav-links a {
-  color: #ecf0f1;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 8px 15px;
-  border-radius: 4px;
-  transition: all 0.3s ease;
+#menu-btn {
+    color: black;
+    background-color: white;
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
 }
 
-.nav-links a:hover {
-  background-color: #34495e;
-  color: #ff9900;
+#close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: var(--color-danger);
+    font-size: 20px;
+    cursor: pointer;
 }
 
 /* Main Content Container */
 main {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0 20px;
-  min-height: 70vh;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    min-height: 70vh;
 }
 
 /* Content List Styles (Untuk Pengumuman/Data) */
 ul.content-list {
-  list-style: none;
+    list-style: none;
 }
 
 .content-item {
-  background: white;
-  border: none;
-  border-left: 5px solid #2c3e50; /* Aksen garis di samping */
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 4px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    background: white;
+    border: none;
+    border-left: 5px solid #2c3e50; /* Aksen garis di samping */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .content-item h3 a {
-  text-decoration: none;
-  color: #2c3e50;
-  font-size: 1.4rem;
+    text-decoration: none;
+    color: #2c3e50;
+    font-size: 1.4rem;
 }
 
 .content-item h3 a:hover {
-  color: #3498db;
+    color: #3498db;
 }
 
 /* Footer */
 footer {
-  background: #2c3e50;
-  color: white;
-  padding: 2rem 0;
-  margin-top: 50px;
-  text-align: center;
+    background: #2c3e50;
+    color: white;
+    padding: 2rem 0;
+    margin-top: 50px;
+    text-align: center;
 }
 
 footer p {
-  font-size: 0.9rem;
-  opacity: 0.8;
+    font-size: 0.9rem;
+    opacity: 0.8;
 }

@@ -53,6 +53,7 @@ announcements: list[dict] = [
 
 @app.get("/", include_in_schema=False, name="home")
 @app.get("/announcements", include_in_schema=False, name="announcements")
+@app.get("/news", include_in_schema=False, name="news")
 def home(request: Request):
     return templates.TemplateResponse(
         "home.html",
@@ -67,7 +68,7 @@ def post_page(request: Request, announcements_id : int):
     for announcement in announcements:
         if announcement.get("id") == announcements_id :
             return templates.TemplateResponse(
-                  "post.html",
+                  "announcements.html",
                   {
                       "request": request,
                       "announcement" : announcement,
@@ -75,6 +76,22 @@ def post_page(request: Request, announcements_id : int):
               
             )
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Post not found")
+
+
+@app.get("/news/{news_id}", include_in_schema=False)
+def post_page(request: Request, news_id : int):
+    for nw in news:
+        if nw.get("id") == news_id :
+            return templates.TemplateResponse(
+                  "news.html",
+                  {
+                      "request": request,
+                      "nw" : nw,
+                  },
+              
+            )
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Post not found")
+
 
 
 @app.get("/api/announcements")

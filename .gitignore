@@ -1,10 +1,40 @@
-# Python-generated files
+# Byte-compiled/cache
 __pycache__/
-*.py[oc]
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python version
+.python-version
+
+# Distribution/packaging
 build/
 dist/
-wheels/
-*.egg-info
+*.egg-info/
 
-# Virtual environments
-.venv
+# Logs
+*.log
+
+# Database
+*.db
+*.sqlite3
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+#just in case
+uv.lock
+
+# Testing
+.pytest_cache/

@@ -10,6 +10,9 @@ from sqlalchemy.orm import Session
 from starlette.exceptions import HTTPException as StarletteHTTPExceptison
 from routers import auth
 from db.database import Base, engine
+from routers import dashboard
+from starlette.middleware.sessions import SessionMiddleware
+
 
 
 app = FastAPI()
@@ -18,8 +21,10 @@ Base.metadata.create_all(bind=engine)
 
 router = APIRouter()
 
+app.add_middleware(SessionMiddleware, secret_key="secret123")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.include_router(auth.router, prefix="/auth")
+app.include_router(dashboard.router)
 
 templates = Jinja2Templates(directory="templates")
 

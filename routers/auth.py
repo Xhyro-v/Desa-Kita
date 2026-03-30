@@ -5,7 +5,8 @@ from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from db.database import SessionLocal,get_db
-from models.users import User
+from models.models import User
+from passlib.hash import bcrypt
 
 
 router = APIRouter()
@@ -30,9 +31,11 @@ def register_user(
     password: str = Form(...),
     db: Session = Depends(get_db)
 ):
+    hashed_password = bcrypt.hash(password)
+
     new_user = User(
         username=username,
-        password=password
+        password=hashed_password
     )
 
     try:
@@ -70,6 +73,7 @@ def login_user(
     db: Session = Depends(get_db)
 ):
     user = db.query(User).filter(User.username == username).first()
+    
 
 
     if not user:
@@ -82,8 +86,7 @@ def login_user(
             }
         )
 
-    if user.password != password:
-        db.close()
+    if not bcrypt.verify(password, user.password):
         return templates.TemplateResponse(
             "login.html",
             {
@@ -92,13 +95,10 @@ def login_user(
             }
         )
 
-    db.close()
-    return templates.TemplateResponse(
-    "login.html",
-    {
-        "request": request,
-        "message": "Login berhasil",
-        "success": True,
-        "username": username
-    }
-)
+    request.session["user"] = user.username
+    request.session["role"] = user.role
+    
+    if user.role == "admin":
+        return RedirectResponse("/admin", status_code=303)
+    else:
+        return RedirectResponse("/dashboard", status_code=303)

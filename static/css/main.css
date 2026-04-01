@@ -1,3 +1,61 @@
-h1 h2 h3 {
+body{
+  background:#f5f5f5;
+}
+
+:root {
+  /* Brand Colors */
+  --color-primary: #2d6a4f;
+  --color-primary-light: #74c69d;
+  --color-secondary: #1b4332;
+  
+  /* Accent & Status */
+  --color-accent: #ffb703; /* Untuk pengumuman penting */
+  --color-info: #3a86ff;   /* Untuk berita umum */
+  --color-success: #52b788;
+  --color-danger: #e63946;
+  
+  /* Neutral Colors */
+  --color-bg: #f8f9fa;
+  --color-card: #ffffff;
+  --color-text-main: #212529;
+  --color-text-muted: #6c757d;
+  --color-border: #dee2e6;
+}
+
+#beranda {
   text-align: center;
+}
+#sapaan {
+  text-align: center;
+}
+#comp {
+  text-align: center;
+}
+
+.card{
+  display:flex;
+  gap:15px;
+  padding:20px;
+  background: var(--color-card);
+  border-radius:12px;
+  width:300px;
+  margin:50px auto;
+  box-shadow:0 10px 20px rgba(0,0,0,0.05);
+}
+
+.card:hover {
+  border-color: grey;
+  transform: translateY(-4px);
+}
+
+.icon{
+  width:50px;
+  height:50px;
+  background:var(--color-info);
+  border-radius:50%;
+}
+
+small {
+  color: var(--color-text-muted);
+  font-size: 12px;
 }

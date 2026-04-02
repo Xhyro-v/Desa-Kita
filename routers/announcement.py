@@ -21,7 +21,8 @@ def get_announ(request: Request, db: Session = Depends(get_db)):
         "announcement.html",
         {
             "request": request,
-            "announcements": announcements
+            "announcements": announcements,
+            "role" : request.session.get("role"),
         }
     )
 
@@ -34,9 +35,13 @@ def post_announ(
     db: Session = Depends(get_db)
 ):
     username = request.session.get("user")
+    role = request.session.get("role")
 
     if not username:
         return RedirectResponse("/auth/login", status_code=303)
+    
+    if role != "admin":
+        return RedirectResponse("/announcement",status_code=303)
 
     user = db.query(User).filter(User.username == username).first()
 

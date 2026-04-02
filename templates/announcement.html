@@ -12,7 +12,20 @@
         <title>Announcement</title>
     </head>
     <body>
-        {% for ann in announcements %}
+        {% if role == "admin" %}
+        <div class="card">
+            <h3>Add Announcement</h3>
+            <form method="post" action="/announcement">
+                <input name="title" placeholder="Title" required />
+                <textarea
+                    name="content"
+                    placeholder="Content"
+                    required
+                ></textarea>
+                <button type="submit">Post</button>
+            </form>
+        </div>
+        {% endif %} {% for ann in announcements %}
         <div class="card">
             <div class="pfp"></div>
 

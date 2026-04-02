@@ -12,11 +12,40 @@
         <title>Desa-Kita</title>
     </head>
     <body>
+        <button id="menu-btn">☰</button>
+
+        <div id="sidebar" class="sidebar">
+            <button id="close-btn">✖</button>
+            <a href="#">Home</a>
+            <a href="announcement">Announcements</a>
+            <a href="#">News</a>
+            <a href="#">Settings</a>
+        </div>
+
         <h1 id="beranda">Beranda</h1>
         <h3 id="sapaan">Hello {{ username }}</h3>
 
         {% if message %}
         <p>{{ message }}</p>
         {% endif %}
+        <script type="text/javascript" charset="utf-8">
+            const btn = document.getElementById("menu-btn");
+            const sidebar = document.getElementById("sidebar");
+
+            btn.addEventListener("click", () => {
+                sidebar.classList.toggle("active");
+            });
+            const closeBtn = document.getElementById("close-btn");
+
+            closeBtn.addEventListener("click", () => {
+                sidebar.classList.remove("active");
+            });
+
+            document.addEventListener("click", e => {
+                if (!sidebar.contains(e.target) && !btn.contains(e.target)) {
+                    sidebar.classList.remove("active");
+                }
+            });
+        </script>
     </body>
 </html>

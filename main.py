@@ -27,10 +27,3 @@ app.include_router(announcement.router)
 
 templates = Jinja2Templates(directory="templates")
 
-@app.get("/html")
-def html_page(request: Request):
-    return templates.TemplateResponse("test.html", {
-        "request": request,
-        "name": "Naufal"
-    })
-

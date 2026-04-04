@@ -104,3 +104,12 @@ small {
   font-size: 20px;
   cursor: pointer;
 }
+
+#close-btn-ann {
+  color: var(--color-danger);
+  background: none;
+  border: solid var(--color-border) 2px;
+  border-radius: 10px;
+  font-size: 25px;
+  cursor: pointer;
+}

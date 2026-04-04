@@ -58,3 +58,25 @@ def post_announ(
     db.commit()
 
     return RedirectResponse("/announcement", status_code=303)
+
+
+@router.post("/announcement/delete/{ann.id}")
+def delete_announ(
+    ann_id: int,
+    request: Request,
+    db: Session = Depends(get_db)
+):
+    role = request.session.get("role")
+
+    if role != "admin":
+        return RedirectResponse("/announcement", status_code=303)
+
+    announcement = db.query(Announcement).filter(Announcement.id == ann_id).first()
+
+    if not announcement:
+        raise HTTPException(status_code=404, detail="Announcement not found")
+
+    db.delete(announcement)
+    db.commit()
+
+    return RedirectResponse("/announcement", status_code=303)

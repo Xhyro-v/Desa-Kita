@@ -13,6 +13,10 @@
     </head>
     <body>
         {% if role == "admin" %}
+        <a id="close-btn-ann" href="admin">✖</a>
+        {% endif %} {% if role == "user" %}
+        <a id="close-btn-ann" href="dashboard">✖</a>
+        {% endif %} {% if role == "admin" %}
         <div class="card">
             <h3>Add Announcement</h3>
             <form method="post" action="/announcement">
@@ -36,6 +40,17 @@
                     By {{ ann.author }} • {{ ann.created_at.strftime('%d %b %Y,
                     %H:%M') }}
                 </small>
+
+                {% if role == "admin" %}
+                <form method="post" action="/announcement/delete/{{ ann.id }}">
+                    <button
+                        type="submit"
+                        onclick="return confirm('Yakin mau hapus?');"
+                    >
+                        Delete
+                    </button>
+                </form>
+                {% endif %}
             </div>
         </div>
         {% endfor %}

@@ -1,115 +1,120 @@
-body{
-  background:#f5f5f5;
-}
-
 :root {
-  /* Brand Colors */
   --color-primary: #2d6a4f;
   --color-primary-light: #74c69d;
   --color-secondary: #1b4332;
-  
-  /* Accent & Status */
-  --color-accent: #ffb703; /* Untuk pengumuman penting */
-  --color-info: #3a86ff;   /* Untuk berita umum */
+  --color-accent: #ffb703;
+  --color-info: #3a86ff;
   --color-success: #52b788;
   --color-danger: #e63946;
-  
-  /* Neutral Colors */
-  --color-bg: #f8f9fa;
+  --color-bg: #f4f7f6;
   --color-card: #ffffff;
-  --color-text-main: #212529;
-  --color-text-muted: #6c757d;
-  --color-border: #dee2e6;
+  --color-text-main: #2d3436;
+  --color-text-muted: #636e72;
+  --color-border: #dfe6e9;
 }
 
-#beranda {
-  text-align: center;
-}
-#sapaan {
-  text-align: center;
-}
-#comp {
-  text-align: center;
+body {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text-main);
+  margin: 0;
+  padding: 20px;
 }
 
-.card{
-  display:flex;
-  gap:15px;
-  padding:20px;
+/* Typography */
+h1, h2, h3 { text-align: center; color: var(--color-secondary); }
+
+/* Layout Container */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Card Styling */
+.card, .card-ann {
   background: var(--color-card);
   border-radius: 12px;
-  width:300px;
-  margin:50px auto;
-  box-shadow:0 10px 20px rgba(0,0,0,0.05);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+  border-left: 5px solid var(--color-border);
 }
 
-.card:hover {
-  border-color: grey;
-  transform: translateY(-4px);
+.card:hover { transform: translateY(-3px); }
+
+/* Dynamic Priority Colors */
+.priority-penting { border-left-color: var(--color-accent); }
+.priority-umum { border-left-color: var(--color-info); }
+
+.badge {
+  font-size: 10px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: var(--color-border);
+  margin-bottom: 10px;
+  display: inline-block;
 }
 
-.icon{
-  width:50px;
-  height:50px;
-  background:var(--color-info);
-  border-radius:50%;
+.priority-penting .badge { background: var(--color-accent); color: white; }
+.priority-umum .badge { background: var(--color-info); color: white; }
+
+/* Admin Form */
+.admin-form input, .admin-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-sizing: border-box;
 }
 
-small {
-  color: var(--color-text-muted);
-  font-size: 12px;
+.btn-post {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
 }
 
+.btn-delete {
+  background: none;
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+/* Sidebar */
 .sidebar {
   position: fixed;
-  top: 0;
-  left: -250px;   /* disembunyiin */
-  width: 160px;
-  height: 100%;
-  background: #111;
+  top: 0; left: -250px;
+  width: 200px; height: 100%;
+  background: var(--color-secondary);
   padding-top: 60px;
-  
   transition: 0.3s;
-  
-  position: fixed;
+  z-index: 1000;
 }
+
+.sidebar.active { left: 0; }
 
 .sidebar a {
-  display: block;
-  color: var(--color-card);
-  padding: 12px;
+  padding: 15px 25px;
+  color: white;
   text-decoration: none;
+  display: block;
 }
 
-.sidebar.active {
-  left: 0;  /* muncul */
-}
+.sidebar a:hover { background: var(--color-primary); }
 
 #menu-btn {
-  color: black;
-  background-color: white;
-  background:none;
-  border: none;
-  font-size: 30px;
-  cursor: pointer;
-}
-
-#close-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  font-size: 24px;
   background: none;
   border: none;
-  color: var(--color-danger);
-  font-size: 20px;
-  cursor: pointer;
-}
-
-#close-btn-ann {
-  color: var(--color-danger);
-  background: none;
-  border: solid var(--color-border) 2px;
-  border-radius: 10px;
-  font-size: 25px;
   cursor: pointer;
 }

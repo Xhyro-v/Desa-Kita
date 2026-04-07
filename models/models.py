@@ -17,5 +17,6 @@ class Announcement(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String)
     content = Column(String)
+    priority = Column(String)
     author = Column(String)
     created_at = Column(DateTime, default=datetime.utcnow())

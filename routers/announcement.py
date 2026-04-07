@@ -32,6 +32,7 @@ def post_announ(
     request: Request,
     title: str = Form(...),
     content: str = Form(...),
+    priority: str = Form(...),
     db: Session = Depends(get_db)
 ):
     username = request.session.get("user")
@@ -49,9 +50,10 @@ def post_announ(
         raise HTTPException(status_code=404, detail="User not found")
 
     new_announcement = Announcement(
-        title=title,
-        content=content,
-        author=user.username
+        title = title,
+        content = content,
+        priority = priority,
+        author = user.username
     )
 
     db.add(new_announcement)
@@ -60,7 +62,7 @@ def post_announ(
     return RedirectResponse("/announcement", status_code=303)
 
 
-@router.post("/announcement/delete/{ann.id}")
+@router.post("/announcement/delete/{ann_id}")
 def delete_announ(
     ann_id: int,
     request: Request,

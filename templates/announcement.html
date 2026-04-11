@@ -3,24 +3,48 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='css/main.css') }}" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="{{ url_for('static', path='css/main.css') }}"
+        />
         <title>Announcements | Desa-Kita</title>
     </head>
     <body>
         <div class="nav-header">
-            <a id="close-btn-ann" href="{{ 'admin' if role == 'admin' else 'dashboard' }}">← Kembali</a>
+            <a
+                id="close-btn-ann"
+                href="{{ 'admin' if role == 'admin' else 'dashboard' }}"
+                >✖</a
+            >
         </div>
 
         {% if role == "admin" %}
         <div class="card admin-form">
             <h3>Buat Pengumuman Baru</h3>
             <form method="post" action="/announcement">
-                <input name="title" placeholder="Judul Pengumuman" required />
-                <textarea name="content" placeholder="Isi Pengumuman..." required></textarea>
-                
+                <input
+                    name="title"
+                    placeholder="Judul Pengumuman"
+                    required
+                    minlength="3"
+                />
+
+                <textarea
+                    name="content"
+                    placeholder="Isi Pengumuman..."
+                    required
+                    minlength="5"
+                ></textarea>
+
                 <div class="radio-group">
                     <label>
-                        <input type="radio" name="priority" value="penting" required />
+                        <input
+                            type="radio"
+                            name="priority"
+                            value="penting"
+                            required
+                        />
                         <span class="label-penting">Penting</span>
                     </label>
                     <label>
@@ -31,22 +55,37 @@
                 <button type="submit" class="btn-post">Posting</button>
             </form>
         </div>
-        {% endif %} 
+        {% endif %}
 
         <div class="container">
-            {% for ann in announcements %} 
-            <div class="card-ann {{ 'priority-penting' if ann.priority == 'penting' else 'priority-umum' }}">
+            {% for ann in announcements %}
+            <div
+                class="card-ann {{ 'priority-penting' if ann.priority == 'penting' else 'priority-umum' }}"
+            >
                 <div class="content">
                     <span class="badge">{{ ann.priority | upper }}</span>
                     <h3>{{ ann.title }}</h3>
                     <p>{{ ann.content }}</p>
-                    <hr>
+                    <hr />
                     <div class="meta">
-                        <small>Oleh <strong>{{ ann.author }}</strong> • {{ ann.created_at.strftime('%d %b %Y') }}</small>
-                        
+                        <small
+                            >Oleh <strong>{{ ann.author }}</strong> • {{
+                            ann.created_at.strftime('%d %b %Y') }}</small
+                        >
+
                         {% if role == "admin" %}
-                        <form method="post" action="/announcement/delete/{{ ann.id }}" style="display:inline;">
-                            <button type="submit" class="btn-delete" onclick="return confirm('Hapus pengumuman ini?');">
+                        <form
+                            method="post"
+                            action="/announcement/delete/{{ ann.id }}"
+                            style="display: inline"
+                        >
+                            <button
+                                type="submit"
+                                class="btn-delete"
+                                onclick="
+                                    return confirm('Hapus pengumuman ini?');
+                                "
+                            >
                                 Hapus
                             </button>
                         </form>

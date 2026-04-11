@@ -51,8 +51,12 @@ def register_user(
             }
         )
 
-    return RedirectResponse("/auth/login", status_code=303)
+    user = db.query(User).filter(User.username == username).first()
 
+    request.session["user"] = user.username
+    request.session["role"] = user.role
+    
+    return RedirectResponse("/dashboard", status_code=303)
 
 @router.get("/login")
 def login_page(request: Request):

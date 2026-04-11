@@ -1,7 +1,9 @@
+from datetime import datetime
 from fastapi import Depends, FastAPI, HTTPException, Request, status, APIRouter, Form
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
+from sqlalchemy import desc, case, or_
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from db.database import SessionLocal,get_db
@@ -15,7 +17,24 @@ templates = Jinja2Templates(directory="templates")
 
 @router.get("/announcement")
 def get_announ(request: Request, db: Session = Depends(get_db)):
-    announcements = db.query(Announcement).all()
+  
+    now = datetime.utcnow()
+    
+
+    announcements = db.query(Announcement).order_by(
+        case(
+            (
+                (Announcement.priority == "penting") &
+                (
+                    (Announcement.expires_at == None) |
+                    (Announcement.expires_at > now)
+                ),
+                1
+            ),
+            else_=0
+        ).desc(),
+        Announcement.created_at.desc()
+    ).all()
 
     return templates.TemplateResponse(
         "announcement.html",

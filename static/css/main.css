@@ -286,16 +286,16 @@ h1, h2, h3 {
 }
 
 /* OPTIONS */
-.login-page .login-options,
-.auth-page .login-options {
+.login-page
+.auth-page  {
   display: flex;
   justify-content: space-between;
   font-size: 0.85rem;
   margin-bottom: 1.5rem;
 }
 
-.login-page .login-options a,
-.auth-page .login-options a {
+.login-page 
+.auth-page  {
   color: var(--color-info);
   text-decoration: none;
 }

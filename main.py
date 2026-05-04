@@ -7,7 +7,7 @@ from fastapi.templating import Jinja2Templates
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 from starlette.exceptions import HTTPException as StarletteHTTPExceptison
-from routers import auth, dashboard, announcement
+from routers import auth, dashboard, announcement, report
 from db.database import Base, engine
 from starlette.middleware.sessions import SessionMiddleware
 
@@ -24,6 +24,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 app.include_router(auth.router, prefix="/auth")
 app.include_router(dashboard.router)
 app.include_router(announcement.router)
+app.include_router(report.router)
 
 templates = Jinja2Templates(directory="templates")
 

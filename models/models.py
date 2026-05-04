@@ -21,3 +21,14 @@ class Announcement(Base):
     author = Column(String)
     created_at = Column(DateTime, default=datetime.utcnow())
     expires_at = Column(DateTime,nullable=True)
+
+class Report(Base):
+    __tablename__ = "report"
+    
+    id = Column(Integer,primary_key=True, index=True)
+    type = Column(String)
+    description = Column(String)
+    location = Column(String)
+    status = Column(String,default="Pending")
+    username = Column(String)
+    created_at = Column(DateTime, default=datetime.utcnow())

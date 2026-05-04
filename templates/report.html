@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="{{ url_for('static', path='css/main.css') }}"
+        />
+        <title>Document</title>
+    </head>
+    <body>
+        <button id="menu-btn">☰</button>
+
+        <div id="sidebar" class="sidebar">
+            <button id="close-btn">✖</button>
+            <a href="{{ '/admin' if role == 'admin' else '/dashboard' }}">Home</a>
+            <a href="/announcement" class="active">Announcements</a>
+            <a href="/report">Report</a>
+            <a href="#">Settings</a>
+        </div>
+
+        <h3 id="sapaan">Hello {{ role }}</h3>
+        <h3 id="sapaan">Hello {{ username }}</h3>
+
+        <form method="post" action="/report">
+            <select name="type" required>
+                <option value="" disabled selected>-- Pilih Kategori --</option>
+                <option value="Kebersihan">Kebersihan</option>
+                <option value="Jalan Rusak">Jalan Rusak</option>
+                <option value="Keamanan">Keamanan</option>
+                <option value="Lampu Jalan">Lampu Jalan</option>
+                <option value="Banjir">Banjir</option>
+            </select>
+
+            <textarea
+                name="description"
+                placeholder="Deskripsi laporan"
+                required
+                minlength="5"
+            ></textarea>
+            <textarea
+                name="location"
+                placeholder="lokasi kejadian: kecamatan/keluarah/kampung/RT/RW"
+                required
+                minlength="5"
+            ></textarea>
+            <button type="submit" class="btn-post">lapor</button>
+        </form>
+
+        <script>
+            const btn = document.getElementById("menu-btn");
+            const sidebar = document.getElementById("sidebar");
+
+            btn.addEventListener("click", () => {
+                sidebar.classList.toggle("active");
+            });
+
+            const closeBtn = document.getElementById("close-btn");
+            closeBtn.addEventListener("click", () => {
+                sidebar.classList.remove("active");
+            });
+
+            document.addEventListener("click", e => {
+                if (!sidebar.contains(e.target) && !btn.contains(e.target)) {
+                    sidebar.classList.remove("active");
+                }
+            });
+        </script>
+    </body>
+</html>

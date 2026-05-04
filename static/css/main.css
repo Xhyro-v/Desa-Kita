@@ -351,3 +351,96 @@ h1, h2, h3 {
 /* =========================
    END
 ========================= */
+
+/* =========================
+   12. ANNOUNCEMENT EXTRAS
+========================= */
+
+/* Sidebar active link */
+.sidebar a.active {
+  background: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Admin form post button */
+.btn-post {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+
+.btn-post:hover {
+  background-color: var(--color-secondary);
+}
+
+/* Delete button */
+.btn-delete {
+  padding: 4px 10px;
+  background: none;
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-delete:hover {
+  background: var(--color-danger);
+  color: white;
+}
+
+/* Radio group priority */
+.radio-group {
+  display: flex;
+  gap: 16px;
+  margin: 8px 0;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.label-penting {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.label-umum {
+  color: var(--color-info);
+  font-weight: 600;
+}
+
+/* Card meta row */
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Admin form heading */
+.admin-form h3 {
+  margin-top: 0;
+  color: var(--color-secondary);
+}
+
+/* Admin form max-width */
+.admin-form {
+  max-width: 800px;
+  margin: 0 auto 20px;
+}

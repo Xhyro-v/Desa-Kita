@@ -18,16 +18,14 @@
             <button id="close-btn">✖</button>
             <a href="#">Home</a>
             <a href="announcement">Announcements</a>
-            <a href="#">News</a>
+            <a href="report">Report</a>
             <a href="#">Settings</a>
         </div>
 
         <h1 id="beranda">Beranda</h1>
         <h3 id="sapaan">Hello {{ username }}</h3>
 
-        {% if message %}
-        <p>{{ message }}</p>
-        {% endif %}
+        
         <script type="text/javascript" charset="utf-8">
             const btn = document.getElementById("menu-btn");
             const sidebar = document.getElementById("sidebar");

@@ -11,13 +11,17 @@
         <title>Announcements | Desa-Kita</title>
     </head>
     <body>
-        <div class="nav-header">
-            <a
-                id="close-btn-ann"
-                href="{{ 'admin' if role == 'admin' else 'dashboard' }}"
-                >✖</a
-            >
+        <button id="menu-btn">☰</button>
+
+        <div id="sidebar" class="sidebar">
+            <button id="close-btn">✖</button>
+            <a href="{{ '/admin' if role == 'admin' else '/dashboard' }}">Home</a>
+            <a href="/announcement" class="active">Announcements</a>
+            <a href="/report">Report</a>
+            <a href="#">Settings</a>
         </div>
+
+        <h1>Pengumuman</h1>
 
         {% if role == "admin" %}
         <div class="card admin-form">
@@ -95,5 +99,24 @@
             </div>
             {% endfor %}
         </div>
+        <script>
+            const btn = document.getElementById("menu-btn");
+            const sidebar = document.getElementById("sidebar");
+
+            btn.addEventListener("click", () => {
+                sidebar.classList.toggle("active");
+            });
+
+            const closeBtn = document.getElementById("close-btn");
+            closeBtn.addEventListener("click", () => {
+                sidebar.classList.remove("active");
+            });
+
+            document.addEventListener("click", e => {
+                if (!sidebar.contains(e.target) && !btn.contains(e.target)) {
+                    sidebar.classList.remove("active");
+                }
+            });
+        </script>
     </body>
 </html>

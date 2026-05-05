@@ -24,6 +24,7 @@
             <a href="#">Settings</a>
         </div>
 
+        <h2>Laporan</h2>
         <h3 id="sapaan">Hello {{ role }}</h3>
         <h3 id="sapaan">Hello {{ username }}</h3>
 
@@ -52,77 +53,62 @@
             <button type="submit" class="btn-post">lapor</button>
         </form>
 
-        <div class="container">
-            <h2>Laporan</h2>
+        <body class="report-user">
+            <div class="container">
 
-            <div class="card-table">
-                {% if reports %}
-                <table>
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Pelapor</th>
-                            <th>Kategori</th>
-                            <th>Deskripsi</th>
-                            <th>Status</th>
-                            <th>Tanggal</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
+                <!-- TABLE -->
+                <div class="card-table">
+                    {% if reports %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Kategori</th>
+                                <th>Deskripsi</th>
+                                <th>Status</th>
+                                <th>Tanggal</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
 
-                    <tbody>
-                        {% for r in reports %}
-                        <tr>
-                            <td data-label="No">{{ loop.index }}</td>
-                            <td data-label="Pelapor">{{ r.username }}</td>
-                            <td data-label="Kategori">{{ r.type }}</td>
+                        <tbody>
+                            {% for r in reports %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ r.type }}</td>
 
-                            <td data-label="Deskripsi" class="col-desc">
-                                {{ r.description }}
-                            </td>
+                                <td class="col-desc">{{ r.description }}</td>
 
-                            <td data-label="Status">
-                                <span class="badge {{ r.status }}">
-                                    {{ r.status }}
-                                </span>
-                            </td>
+                                <td>
+                                    <span class="badge {{ r.status }}">
+                                        {{ r.status }}
+                                    </span>
+                                </td>
 
-                            <td data-label="Tanggal">
-                                {{ r.created_at.strftime("%d %b %Y") }}
-                            </td>
+                                <td>{{ r.created_at.strftime("%d %b %Y") }}</td>
 
-                            <td data-label="Aksi">
-                                {% if r.status == "pending" %}
-                                <form
-                                    action="/report/delete/{{ r.id }}"
-                                    method="post"
-                                    style="display: inline"
-                                >
-                                    <button
-                                        type="submit"
-                                        class="btn btn-rep-delete"
-                                        onclick="
-                                            return confirm(
-                                                'Hapus laporan ini?'
-                                            );
-                                        "
+                                <td>
+                                    {% if r.status == "pending" %}
+                                    <form
+                                        action="/report/delete/{{ r.id }}"
+                                        method="post"
                                     >
-                                        Delete
-                                    </button>
-                                </form>
-                                {% endif %} {% if r.status == "in_progress" %}
-                                {% endif %}
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-
-                {% else %}
-                <div class="empty">Tidak ada laporan aktif</div>
-                {% endif %}
+                                        <button class="btn-danger">
+                                            Delete
+                                        </button>
+                                    </form>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <div class="empty">Belum ada laporan</div>
+                    {% endif %}
+                </div>
             </div>
-        </div>
+        </body>
 
         <script>
             const btn = document.getElementById("menu-btn");

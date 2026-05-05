@@ -444,3 +444,146 @@ h1, h2, h3 {
   max-width: 800px;
   margin: 0 auto 20px;
 }
+
+
+
+/* =========================
+   12. REPORT (ADMIN + USER CLEAN FINAL)
+========================= */
+
+/* WRAPPER TABLE */
+.card-table {
+    background: var(--color-card);
+    border-radius: 12px;
+    overflow-x: auto; /* 🔥 KUNCI MOBILE */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* TABLE BASE */
+.card-table table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px; /* biar gak hancur di HP */
+}
+
+/* HEADER */
+.card-table thead {
+    background: #f8fafc;
+}
+
+.card-table th {
+    padding: 12px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #64748b;
+    text-align: left;
+}
+
+/* BODY */
+.card-table td {
+    padding: 12px;
+    border-top: 1px solid #f1f5f9;
+    font-size: 0.85rem;
+}
+
+/* HOVER */
+.card-table tr:hover {
+    background-color: #f8fafc;
+    transition: 0.2s;
+}
+
+/* DESKRIPSI */
+.col-desc {
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* BADGE STATUS */
+.badge {
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.in_progress {
+    background: #dbeafe;
+    color: var(--color-info);
+}
+
+.approved {
+    background: #dcfce7;
+    color: var(--color-success);
+}
+
+.rejected {
+    background: #fee2e2;
+    color: var(--color-danger);
+}
+
+/* BUTTON GROUP */
+.btn {
+    padding: 5px 8px;
+    font-size: 0.7rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* BUTTON COLORS */
+.btn-process {
+    background: var(--color-info);
+    color: white;
+}
+
+.btn-approve {
+    background: var(--color-success);
+    color: white;
+}
+
+.btn-reject {
+    background: var(--color-danger);
+    color: white;
+}
+
+.btn-rep-delete {
+    background: var(--color-danger);
+    color: white;
+}
+
+/* EMPTY STATE */
+.empty {
+    padding: 20px;
+    text-align: center;
+    color: #94a3b8;
+}
+
+/* =========================
+   MOBILE (KEEP TABLE, NO CARD)
+========================= */
+
+@media(max-width: 768px){
+
+    /* 🔥 JANGAN UBAH STRUCTURE */
+    /* TIDAK ADA display:block / hide thead */
+
+    .card-table table {
+        font-size: 0.75rem;
+    }
+
+    .card-table th,
+    .card-table td {
+        padding: 8px;
+    }
+
+    .col-desc {
+        max-width: 150px;
+    }
+}

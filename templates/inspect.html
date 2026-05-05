@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="{{ url_for('static', path='css/main.css') }}"
+        />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="inspect-container">
+            <h2>Detail Laporan</h2>
+            <div class="card">
+                <p class="label">Pelapor</p>
+                <h3>{{ report.username }}</h3>
+            </div>
+
+            <div class="card">
+                <p class="label">Kategori</p>
+                <h3>{{ report.type }}</h3>
+            </div>
+
+            <div class="card">
+                <p class="label">Deskripsi</p>
+                <p>{{ report.description }}</p>
+            </div>
+
+            <div class="card">
+                <p class="label">Lokasi</p>
+                <p>{{ report.location }}</p>
+            </div>
+
+            <div class="card">
+                <p class="label">Status</p>
+                <span class="badge {{ report.status }}">
+                    {{ report.status }}
+                </span>
+            </div>
+
+            <div class="card">
+                <p class="label">Tanggal</p>
+                <p>{{ report.created_at.strftime("%d %b %Y") }}</p>
+            </div>
+            
+
+            <div class="actions">
+                <form action="/report/{{ report.id }}/approve" method="post">
+                    <button class="btn btn-approve">Approve</button>
+                </form>
+
+                <form action="/report/{{ report.id }}/reject" method="post">
+                    <button class="btn btn-reject">Reject</button>
+                </form>
+
+                <form action="/report/{{ report.id }}/process" method="post">
+                    <button class="btn btn-process">Process</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

@@ -22,8 +22,88 @@
             <a href="#">Settings</a>
         </div>
 
-        <h3 id="sapaan">Hello {{ role }}</h3>
-        <h3 id="sapaan">Hello {{ username }}</h3>
+        <div class="container">
+            <h2>📋 Laporan Masuk</h2>
+
+            <div class="card-table">
+                {% if reports %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Pelapor</th>
+                            <th>Kategori</th>
+                            <th>Deskripsi</th>
+                            <th>Status</th>
+                            <th>Tanggal</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for r in reports %}
+                        <tr>
+                            <td data-label="No">{{ loop.index }}</td>
+                            <td data-label="Pelapor">{{ r.username }}</td>
+                            <td data-label="Kategori">{{ r.type }}</td>
+
+                            <td data-label="Deskripsi" class="col-desc">
+                                {{ r.description }}
+                            </td>
+
+                            <td data-label="Status">
+                                <span class="badge {{ r.status }}">
+                                    {{ r.status }}
+                                </span>
+                            </td>
+
+                            <td data-label="Tanggal">
+                                {{ r.created_at.strftime("%d %b %Y") }}
+                            </td>
+
+                            <td data-label="Aksi">
+                                {% if r.status == "pending" %}
+                                <form
+                                    action="/report/{{ r.id }}/inspect"
+                                    method="post"
+                                    style="display: inline"
+                                >
+                                    <button class="btn btn-process">
+                                        Inspect
+                                    </button>
+                                </form>
+                                {% endif %} {% if r.status == "in_progress" %}
+                                <form
+                                    action="/report/{{ r.id }}/approve"
+                                    method="post"
+                                    style="display: inline"
+                                >
+                                    <button class="btn btn-approve">ACC</button>
+                                </form>
+
+                                <form
+                                    action="/report/{{ r.id }}/reject"
+                                    method="post"
+                                    style="display: inline"
+                                >
+                                    <button class="btn btn-reject">
+                                        Tolak
+                                    </button>
+                                </form>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                {% else %}
+                <div class="empty">Belum ada laporan masuk.</div>
+                {% endif %}
+            </div>
+        </div>
+
+
         <script>
             const btn = document.getElementById("menu-btn");
             const sidebar = document.getElementById("sidebar");

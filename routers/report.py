@@ -76,6 +76,42 @@ def post_report(request: Request,
     return RedirectResponse("/report", status_code=303)
 
 
+
+@router.post("/report/delete/{report_id}")
+def delete_report(
+    report_id: int,
+    request: Request,
+    db: Session = Depends(get_db)
+):
+    username = request.session.get("user")
+    role = request.session.get("role")
+
+    if not username:
+        return RedirectResponse("/auth/login", status_code=303)
+
+    report = db.query(Report).filter(Report.id == report_id).first()
+
+    if not report:
+        raise HTTPException(status_code=404, detail="Report not found")
+
+    #==========================================
+    if role != "admin" and report.username != username:
+        raise HTTPException(status_code=403, detail="Not allowed")
+
+    #   #==========================================
+    if role != "admin" and report.status != "pending":
+        raise HTTPException(status_code=403, detail="Cannot delete this report")
+
+    db.delete(report)
+    db.commit()
+
+    return RedirectResponse("/report", status_code=303)
+
+
+
+
+
+
 #================== ADMIN SECTION ===================
 
 
@@ -104,6 +140,34 @@ def get_report_admin(request: Request, db: Session = Depends(get_db)):
           }
       )
 
+
+@router.post("/report/{report_id}/inspect")
+def inspect_report(request:Request, report_id: int, db: Session = Depends(get_db)):
+    report = db.query(Report).filter(Report.id == report_id).first()
+    username = request.session.get("user")
+    role = request.session.get("role")
+
+    if not report:
+        raise HTTPException(status_code=404, detail="Report not found")
+  
+    if not username:
+      return RedirectResponse("/auth/login", status_code=303)
+  
+    if role != "admin":
+      return RedirectResponse("/report", status_code=303)
+
+    report = db.query(Report).order_by(Report.id.desc()).first()
+      
+    return templates.TemplateResponse(
+        "inspect.html",
+        {
+            "request": request,
+            "report": report,
+            "role": request.session.get("role")
+        }
+    )
+
+
 @router.post("/report/{report_id}/approve")
 def approve_report(request:Request, report_id: int, db: Session = Depends(get_db)):
     report = db.query(Report).filter(Report.id == report_id).first()
@@ -121,6 +185,28 @@ def approve_report(request:Request, report_id: int, db: Session = Depends(get_db
 
 
     report.status = "approved"
+    db.commit()
+
+    return RedirectResponse("/admin/report", status_code=303)
+
+
+@router.post("/report/{report_id}/reject")
+def reject_report(request:Request, report_id: int, db: Session = Depends(get_db)):
+    report = db.query(Report).filter(Report.id == report_id).first()
+    username = request.session.get("user")
+    role = request.session.get("role")
+
+    if not report:
+        raise HTTPException(status_code=404, detail="Report not found")
+  
+    if not username:
+      return RedirectResponse("/auth/login", status_code=303)
+  
+    if role != "admin":
+      return RedirectResponse("/report", status_code=303)
+
+
+    report.status = "reject"
     db.commit()
 
     return RedirectResponse("/admin/report", status_code=303)

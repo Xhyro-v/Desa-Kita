@@ -156,7 +156,6 @@ def inspect_report(request:Request, report_id: int, db: Session = Depends(get_db
     if role != "admin":
       return RedirectResponse("/report", status_code=303)
 
-    report = db.query(Report).order_by(Report.id.desc()).first()
       
     return templates.TemplateResponse(
         "inspect.html",
@@ -233,4 +232,3 @@ def process_report(request:Request, report_id: int, db: Session = Depends(get_db
     db.commit()
 
     return RedirectResponse("/admin/report", status_code=303)
-

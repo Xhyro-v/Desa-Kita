@@ -5,6 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link
             rel="stylesheet"
             type="text/css"
             href="{{ url_for('static', path='css/main.css') }}"
@@ -24,38 +27,133 @@
             <a href="#">Settings</a>
         </div>
 
-        <h2>Laporan</h2>
-        <h3 id="sapaan">Hello {{ role }}</h3>
-        <h3 id="sapaan">Hello {{ username }}</h3>
+        <div style="text-align: center; padding: 24px 0 8px">
+            <h1 style="margin-bottom: 4px"><i class="fa-solid fa-clipboard"></i> Buat Laporan</h1>
+            <p
+                style="
+                    color: var(--color-text-muted);
+                    font-size: 0.85rem;
+                    letter-spacing: 0.04em;
+                    text-transform: uppercase;
+                "
+            >
+                Sampaikan keluhan atau kejadian di lingkungan Anda
+            </p>
+            <div class="section-divider" style="margin-top: 12px"></div>
+        </div>
 
-        <form method="post" action="/report">
-            <select name="type" required>
-                <option value="" disabled selected>-- Pilih Kategori --</option>
-                <option value="Kebersihan">Kebersihan</option>
-                <option value="Jalan Rusak">Jalan Rusak</option>
-                <option value="Keamanan">Keamanan</option>
-                <option value="Lampu Jalan">Lampu Jalan</option>
-                <option value="Banjir">Banjir</option>
-            </select>
+        <div class="report-form-card">
+            <h3>Detail Laporan</h3>
 
-            <textarea
-                name="description"
-                placeholder="Deskripsi laporan"
-                required
-                minlength="5"
-            ></textarea>
-            <textarea
-                name="location"
-                placeholder="lokasi kejadian: kecamatan/keluarah/kampung/RT/RW"
-                required
-                minlength="5"
-            ></textarea>
-            <button type="submit" class="btn-post">lapor</button>
-        </form>
+            <form method="post" action="/report">
+                <div class="form-group">
+                    <label>Kategori Laporan</label>
+                    <div class="custom-select-wrapper">
+                        <select name="type" id="type-select" required>
+                            <option value="" disabled selected>
+                                — Pilih kategori —
+                            </option>
+                            <optgroup label="Infrastruktur">
+                                <option value="Jalan Rusak">
+                                     Jalan Rusak
+                                </option>
+                                <option value="Saluran Air">
+                                    Saluran Air / Drainase
+                                </option>
+                                <option value="Penerangan Jalan">
+                                    Penerangan Jalan
+                                </option>
+                                <option value="Fasilitas Umum">
+                                     Fasilitas Umum
+                                </option>
+                            </optgroup>
+                            <optgroup label="Sosial & Keamanan">
+                                <option value="Keamanan">
+                                    Keamanan / Kriminalitas
+                                </option>
+                                <option value="Konflik Warga">
+                                    Konflik Antar Warga
+                                </option>
+                                <option value="Anak Terlantar">
+                                   Anak Terlantar
+                                </option>
+                            </optgroup>
+                            <optgroup label="Lingkungan">
+                                <option value="Sampah">
+                                     Sampah / Kebersihan
+                                </option>
+                                <option value="Banjir">
+                                     Banjir / Genangan
+                                </option>
+                                <option value="Pohon Tumbang">
+                                    Pohon Tumbang
+                                </option>
+                            </optgroup>
+                            <optgroup label="Lainnya">
+                                <option value="Lainnya">📌 Lainnya</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <!-- category badge preview -->
+                    <div
+                        id="type-preview"
+                        style="display: none; margin-top: 8px"
+                    >
+                        <span
+                            id="type-pill"
+                            style="
+                                display: inline-block;
+                                padding: 4px 14px;
+                                border-radius: 99px;
+                                font-size: 0.78rem;
+                                font-weight: 700;
+                                background: rgba(41, 128, 185, 0.1);
+                                color: var(--color-info);
+                                border: 1.5px solid var(--color-info);
+                            "
+                        ></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Deskripsi Kejadian</label>
+                    <textarea
+                        name="description"
+                        placeholder="Ceritakan secara lengkap apa yang terjadi, kapan, dan dampaknya..."
+                        required
+                        minlength="5"
+                        style="min-height: 120px"
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Lokasi Kejadian</label>
+                    <div class="input-with-icon">
+                        <span class="icon">📍</span>
+                        <textarea
+                            name="location"
+                            placeholder="Contoh: RT 03 / RW 01, Kampung Mekar, Kel. Sukamaju, Kec. Cimanggis"
+                            required
+                            minlength="5"
+                            style="min-height: 80px"
+                        ></textarea>
+                    </div>
+                </div>
+
+
+
+                <button
+                    type="submit"
+                    class="btn-post"
+                    style="background: var(--color-info)"
+                >
+                    <span></span><i class="fa-solid fa-paper-plane"></i> Kirim Laporan
+                </button>
+            </form>
+        </div>
 
         <body class="report-user">
             <div class="container">
-
                 <!-- TABLE -->
                 <div class="card-table">
                     {% if reports %}
@@ -93,7 +191,7 @@
                                         action="/report/delete/{{ r.id }}"
                                         method="post"
                                     >
-                                        <button class="btn-danger">
+                                        <button class="btn-danger"><i class="fa-solid fa-trash"></i>
                                             Delete
                                         </button>
                                     </form>
@@ -130,4 +228,4 @@
             });
         </script>
     </body>
-</html>
+</html>F

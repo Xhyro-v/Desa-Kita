@@ -5,6 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
             rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
+        <link
+            rel="stylesheet"
             type="text/css"
             href="{{ url_for('static', path='css/main.css') }}"
         />
@@ -15,13 +19,15 @@
 
         <div id="sidebar" class="sidebar">
             <button id="close-btn">✖</button>
-            <a href="{{ '/admin' if role == 'admin' else '/dashboard' }}">Home</a>
+            <a href="{{ '/admin' if role == 'admin' else '/dashboard' }}"
+                >Home</a
+            >
             <a href="/announcement" class="active">Announcements</a>
             <a href="/report">Report</a>
             <a href="#">Settings</a>
         </div>
 
-        <h1>Pengumuman</h1>
+        <h1><i class="fa-solid fa-bullhorn"></i> Pengumuman</h1>
 
         {% if role == "admin" %}
         <div class="card admin-form">
@@ -56,7 +62,9 @@
                         <span class="label-umum">Umum</span>
                     </label>
                 </div>
-                <button type="submit" class="btn-post">Posting</button>
+                <button type="submit" class="btn-post">
+                    <i class="fa-solid fa-paper-plane"></i>Posting
+                </button>
             </form>
         </div>
         {% endif %}
@@ -90,6 +98,7 @@
                                     return confirm('Hapus pengumuman ini?');
                                 "
                             >
+                                <i class="fa-solid fa-trash"></i>
                                 Hapus
                             </button>
                         </form>

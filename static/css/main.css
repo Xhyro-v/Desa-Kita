@@ -59,7 +59,6 @@ h1, h2, h3 {
    5. COMPONENTS
 ========================= */
 
-/* CARD */
 .card, .card-ann {
   background: var(--color-card);
   border-radius: 12px;
@@ -74,7 +73,6 @@ h1, h2, h3 {
   transform: translateY(-3px);
 }
 
-/* BADGE */
 .badge {
   font-size: 10px;
   font-weight: bold;
@@ -84,7 +82,6 @@ h1, h2, h3 {
   display: inline-block;
 }
 
-/* BUTTON */
 .btn {
   border: none;
   padding: 10px 16px;
@@ -206,13 +203,11 @@ h1, h2, h3 {
   padding: 0;
 }
 
-/* reset khusus auth */
 .login-page *,
 .auth-page * {
   box-sizing: border-box;
 }
 
-/* CARD LOGIN */
 .login-page .login-card,
 .auth-page .login-card {
   background-color: var(--color-card);
@@ -226,7 +221,6 @@ h1, h2, h3 {
   overflow: hidden;
 }
 
-/* ACCENT BAR */
 .login-page .accent-bar,
 .auth-page .accent-bar {
   height: 5px;
@@ -237,7 +231,6 @@ h1, h2, h3 {
   left: 0;
 }
 
-/* HEADER */
 .login-page .login-header,
 .auth-page .login-header {
   text-align: center;
@@ -256,7 +249,6 @@ h1, h2, h3 {
   font-size: 0.9rem;
 }
 
-/* FORM */
 .login-page .form-group,
 .auth-page .form-group {
   margin-bottom: 1.5rem;
@@ -285,7 +277,6 @@ h1, h2, h3 {
   box-shadow: 0 0 0 3px rgba(116, 198, 157, 0.2);
 }
 
-/* OPTIONS */
 .login-page
 .auth-page  {
   display: flex;
@@ -305,7 +296,6 @@ h1, h2, h3 {
   text-decoration: underline;
 }
 
-/* BUTTON LOGIN */
 .login-page .btn-login,
 .auth-page .btn-login {
   width: 100%;
@@ -323,7 +313,6 @@ h1, h2, h3 {
   background-color: var(--color-secondary);
 }
 
-/* FOOTER */
 .login-page .footer-text,
 .auth-page .footer-text {
   text-align: center;
@@ -356,13 +345,11 @@ h1, h2, h3 {
    12. ANNOUNCEMENT EXTRAS
 ========================= */
 
-/* Sidebar active link */
 .sidebar a.active {
   background: var(--color-primary);
   font-weight: 600;
 }
 
-/* Admin form post button */
 .btn-post {
   width: 100%;
   padding: 0.75rem;
@@ -381,7 +368,6 @@ h1, h2, h3 {
   background-color: var(--color-secondary);
 }
 
-/* Delete button */
 .btn-delete {
   padding: 4px 10px;
   background: none;
@@ -399,7 +385,6 @@ h1, h2, h3 {
   color: white;
 }
 
-/* Radio group priority */
 .radio-group {
   display: flex;
   gap: 16px;
@@ -424,7 +409,6 @@ h1, h2, h3 {
   font-weight: 600;
 }
 
-/* Card meta row */
 .meta {
   display: flex;
   justify-content: space-between;
@@ -433,13 +417,11 @@ h1, h2, h3 {
   gap: 8px;
 }
 
-/* Admin form heading */
 .admin-form h3 {
   margin-top: 0;
   color: var(--color-secondary);
 }
 
-/* Admin form max-width */
 .admin-form {
   max-width: 800px;
   margin: 0 auto 20px;
@@ -448,25 +430,22 @@ h1, h2, h3 {
 
 
 /* =========================
-   12. REPORT (ADMIN + USER CLEAN FINAL)
+   12. REPORT (ADMIN and USER CLEAN FINAL REAL NO FAKE)
 ========================= */
 
-/* WRAPPER TABLE */
 .card-table {
     background: var(--color-card);
     border-radius: 12px;
-    overflow-x: auto; /* 🔥 KUNCI MOBILE */
+    overflow-x: auto; 
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-/* TABLE BASE */
 .card-table table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 650px; /* biar gak hancur di HP */
+    min-width: 650px; 
 }
 
-/* HEADER */
 .card-table thead {
     background: #f8fafc;
 }
@@ -479,20 +458,17 @@ h1, h2, h3 {
     text-align: left;
 }
 
-/* BODY */
 .card-table td {
     padding: 12px;
     border-top: 1px solid #f1f5f9;
     font-size: 0.85rem;
 }
 
-/* HOVER */
 .card-table tr:hover {
     background-color: #f8fafc;
     transition: 0.2s;
 }
 
-/* DESKRIPSI */
 .col-desc {
     max-width: 220px;
     overflow: hidden;
@@ -500,7 +476,6 @@ h1, h2, h3 {
     white-space: nowrap;
 }
 
-/* BADGE STATUS */
 .badge {
     padding: 5px 10px;
     border-radius: 999px;
@@ -528,7 +503,6 @@ h1, h2, h3 {
     color: var(--color-danger);
 }
 
-/* BUTTON GROUP */
 .btn {
     padding: 5px 8px;
     font-size: 0.7rem;
@@ -537,7 +511,6 @@ h1, h2, h3 {
     cursor: pointer;
 }
 
-/* BUTTON COLORS */
 .btn-process {
     background: var(--color-info);
     color: white;
@@ -565,14 +538,92 @@ h1, h2, h3 {
     color: #94a3b8;
 }
 
+
+.report-form-card {
+  max-width: 760px;
+  margin: 0 auto 28px;
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-light);
+}
+
+.report-form-card h3 {
+  text-align: left;
+  font-size: 1rem;
+  color: var(--color-secondary);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.report-form-card h3::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 18px;
+  background: var(--color-info);
+  border-radius: 99px;
+}
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon .icon {
+  position: absolute;
+  left: 12px;
+  top: 13px;
+  font-size: 1rem;
+  pointer-events: none;
+  color: var(--color-text-muted);
+}
+
+.input-with-icon input,
+.input-with-icon textarea {
+  padding-left: 38px;
+}
+
+input, textarea, select {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--color-text-main);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 3px rgba(192,57,43,0.1);
+}
+
+textarea { resize: vertical; min-height: 100px; }
+
+.form-group { margin-bottom: 16px; }
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+
+
 /* =========================
    MOBILE (KEEP TABLE, NO CARD)
 ========================= */
 
 @media(max-width: 768px){
-
-    /* 🔥 JANGAN UBAH STRUCTURE */
-    /* TIDAK ADA display:block / hide thead */
 
     .card-table table {
         font-size: 0.75rem;

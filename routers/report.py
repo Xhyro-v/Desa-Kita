@@ -211,3 +211,26 @@ def reject_report(request:Request, report_id: int, db: Session = Depends(get_db)
 
     return RedirectResponse("/admin/report", status_code=303)
 
+
+
+@router.post("/report/{report_id}/process")
+def process_report(request:Request, report_id: int, db: Session = Depends(get_db)):
+    report = db.query(Report).filter(Report.id == report_id).first()
+    username = request.session.get("user")
+    role = request.session.get("role")
+
+    if not report:
+        raise HTTPException(status_code=404, detail="Report not found")
+  
+    if not username:
+      return RedirectResponse("/auth/login", status_code=303)
+  
+    if role != "admin":
+      return RedirectResponse("/report", status_code=303)
+
+
+    report.status = "process"
+    db.commit()
+
+    return RedirectResponse("/admin/report", status_code=303)
+

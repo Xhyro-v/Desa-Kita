@@ -39,7 +39,7 @@ def get_report(request: Request, db: Session = Depends(get_db)):
               "role": request.session.get("role")
           }
       )
-
+  
 @router.post("/report")
 def post_report(request: Request,
     type: str = Form(...),
@@ -77,6 +77,31 @@ def post_report(request: Request,
 
 
 
+
+@router.get("/report/laporan-saya")
+def inspect_my_report(request:Request,  db: Session = Depends(get_db)):
+    username = request.session.get("user")
+    role = request.session.get("role")
+    report = db.query(Report).filter(Report.username == username).all()
+
+    if not report:
+        raise HTTPException(status_code=404, detail="Report not found")
+  
+    if not username:
+      return RedirectResponse("/auth/login", status_code=303)
+
+      
+    return templates.TemplateResponse(
+        "my_report.html",
+        {
+            "request": request,
+            "reports": report,
+            "role": request.session.get("role")
+        }
+    )
+
+
+
 @router.post("/report/delete/{report_id}")
 def delete_report(
     report_id: int,
@@ -106,8 +131,6 @@ def delete_report(
     db.commit()
 
     return RedirectResponse("/report", status_code=303)
-
-
 
 
 

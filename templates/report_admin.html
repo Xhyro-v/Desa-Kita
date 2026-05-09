@@ -5,8 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
         <link
             rel="stylesheet"
             type="text/css"
@@ -19,12 +20,27 @@
 
         <div id="sidebar" class="sidebar">
             <button id="close-btn">✖</button>
-            <a href="/admin">Home</a>
-            <a href="/announcement" class="active">Announcements</a>
-            <a href="/admin/report">Report</a>
+
+            <a href="{{ '/admin' if role == 'admin' else '/dashboard' }}">
+                Home
+            </a>
+
+            <a href="/announcement" class="active"> Announcements </a>
+
+            <!-- DROPDOWN REPORT -->
+            <button class="dropdown-btn">Report ▼</button>
+
+            <div class="dropdown-content">
+                <a href="/report">Buat Laporan</a>
+                <a href="/report/laporan-saya">Laporan Saya</a>
+            </div>
+
             <a href="#">Settings</a>
         </div>
-
+        const dropdownBtn = document.querySelector(".dropdown-btn"); const
+        dropdownContent = document.querySelector(".dropdown-content");
+        dropdownBtn.addEventListener("click", () => {
+        dropdownContent.classList.toggle("show"); });
         <div class="container">
             <h2><i class="fa-solid fa-clipboard"></i> Laporan Masuk</h2>
 
@@ -106,7 +122,6 @@
             </div>
         </div>
 
-
         <script>
             const btn = document.getElementById("menu-btn");
             const sidebar = document.getElementById("sidebar");
@@ -124,6 +139,12 @@
                 if (!sidebar.contains(e.target) && !btn.contains(e.target)) {
                     sidebar.classList.remove("active");
                 }
+            });
+            const dropdownBtn = document.querySelector(".dropdown-btn");
+            const dropdownContent = document.querySelector(".dropdown-content");
+
+            dropdownBtn.addEventListener("click", () => {
+                dropdownContent.classList.toggle("show");
             });
         </script>
     </body>

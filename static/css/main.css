@@ -175,6 +175,7 @@ h1, h2, h3 {
 .sidebar a {
   padding: 15px 25px;
   color: white;
+  border: 1px solid;
   text-decoration: none;
   display: block;
 }
@@ -188,6 +189,41 @@ h1, h2, h3 {
   background: none;
   border: none;
   cursor: pointer;
+}
+
+.dropdown-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.dropdown-btn:hover {
+    background-color:var(--color-primary);
+}
+
+.dropdown-content {
+    display: none;
+    background-color: var(--color-secondary);
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 35px;
+    color: white;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #475569;
+}
+
+.dropdown-content.show {
+    display: block;
 }
 
 

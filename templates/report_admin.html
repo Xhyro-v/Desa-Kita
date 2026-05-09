@@ -75,7 +75,7 @@
                                         Inspect
                                     </button>
                                 </form>
-                                {% endif %} {% if r.status == "in_progress" %}
+                                {% endif %} {% if r.status == "process" %}
                                 <form
                                     action="/report/{{ r.id }}/approve"
                                     method="post"

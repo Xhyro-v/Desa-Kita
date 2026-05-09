@@ -205,7 +205,7 @@ def reject_report(request:Request, report_id: int, db: Session = Depends(get_db)
       return RedirectResponse("/report", status_code=303)
 
 
-    report.status = "reject"
+    report.status = "rejected"
     db.commit()
 
     return RedirectResponse("/admin/report", status_code=303)

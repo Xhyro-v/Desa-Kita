@@ -10,7 +10,6 @@
             href="{{ url_for('static', path='css/main.css') }}"
         />
 
-    <!-- WAJIB -->
 </head>
 
 <body class="login-page">
@@ -23,7 +22,6 @@
             <p>Silakan masuk ke akun Anda</p>
         </div>
 
-        <!-- 🔥 FIX DISINI -->
         <form method="post">
 
             <div class="form-group">
@@ -53,7 +51,6 @@
 
         </form>
 
-        <!-- 🔥 FIX MESSAGE -->
         {% if message %}
         <p style="color: red; text-align:center; margin-top:10px;">
             {{ message }}

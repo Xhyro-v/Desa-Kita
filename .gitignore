@@ -15,13 +15,16 @@ env/
 build/
 dist/
 *.egg-info/
-
 # Logs
 *.log
+
 
 # Database
 *.db
 *.sqlite3
+
+
+
 
 # Environment variables
 .env
@@ -30,9 +33,18 @@ dist/
 .vscode/
 .idea/
 
+
+
+
 # OS files
 .DS_Store
 Thumbs.db
+
+
+
+
+
+
 #just in case
 uv.lock
 

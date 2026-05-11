@@ -1,0 +1,261 @@
+:root {
+  --color-primary: #2d6a4f;
+  --color-primary-light: #74c69d;
+  --color-secondary: #1b4332;
+  --color-accent: #ffb703;
+  --color-info: #3a86ff;
+  --color-success: #52b788;
+  --color-danger: #e63946;
+
+  --color-bg: #f4f7f6;
+  --color-card: #ffffff;
+
+  --color-text-main: #2d3436;
+  --color-text-muted: #636e72;
+  --color-border: #dfe6e9;
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text-main);
+  margin: 0;
+  padding: 20px;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  color: var(--color-secondary);
+}
+
+
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card-table {
+    background: var(--color-card);
+    border-radius: 12px;
+    overflow-x: auto; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.card-table table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px; 
+}
+
+.card-table thead {
+    background: #f8fafc;
+}
+
+.card-table th {
+    padding: 12px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #64748b;
+    text-align: left;
+}
+
+.card-table td {
+    padding: 12px;
+    border-top: 1px solid #f1f5f9;
+    font-size: 0.85rem;
+}
+
+.card-table tr:hover {
+    background-color: #f8fafc;
+    transition: 0.2s;
+}
+
+.col-desc {
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.badge {
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.process {
+    background: #dbeafe;
+    color: var(--color-info);
+}
+
+.approved {
+    background: #dcfce7;
+    color: var(--color-success);
+}
+
+.rejected {
+    background: #fee2e2;
+    color: var(--color-danger);
+}
+
+.btn {
+    padding: 5px 8px;
+    font-size: 0.7rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-process {
+    background: var(--color-info);
+    color: white;
+}
+
+.btn-approve {
+    background: var(--color-success);
+    color: white;
+}
+
+.btn-reject {
+    background: var(--color-danger);
+    color: white;
+}
+
+.btn-rep-delete {
+    background: var(--color-danger);
+    color: white;
+}
+
+.btn-post {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+
+.btn-post:hover {
+  background-color: var(--color-secondary);
+}
+
+.empty {
+    padding: 20px;
+    text-align: center;
+    color: #94a3b8;
+}
+
+.report-form-card {
+  max-width: 760px;
+  margin: 0 auto 28px;
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-light);
+}
+
+.report-form-card h3 {
+  text-align: left;
+  font-size: 1rem;
+  color: var(--color-secondary);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.report-form-card h3::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 18px;
+  background: var(--color-info);
+  border-radius: 99px;
+}
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon .icon {
+  position: absolute;
+  left: 12px;
+  top: 13px;
+  font-size: 1rem;
+  pointer-events: none;
+  color: var(--color-text-muted);
+}
+
+.input-with-icon input,
+.input-with-icon textarea {
+  padding-left: 38px;
+}
+
+input, textarea, select {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--color-text-main);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 3px rgba(192,57,43,0.1);
+}
+
+textarea { resize: vertical; min-height: 100px; }
+
+.form-group { margin-bottom: 16px; }
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+
+
+@media(max-width: 768px){
+
+    .card-table table {
+        font-size: 0.75rem;
+    }
+
+    .card-table th,
+    .card-table td {
+        padding: 8px;
+    }
+
+    .col-desc {
+        max-width: 150px;
+    }
+}

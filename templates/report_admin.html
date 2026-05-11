@@ -1,123 +1,84 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        />
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="{{ url_for('static', path='css/main.css') }}"
-        />
-        <title>Document</title>
-    </head>
-    <body>
-        <button id="menu-btn">☰</button>
+{% extends "base.html" %} {% block css %}
 
-        <div id="sidebar" class="sidebar">
-            <button id="close-btn">✖</button>
+<link rel="stylesheet" href="{{ url_for('static', path='css/report.css') }}" />
 
-            <a href="{{ '/admin' if role == 'admin' else '/dashboard' }}">
-                Home
-            </a>
+{% endblock %} {% block content %}
 
-            <a href="/announcement" class="active"> Announcements </a>
+<div class="container">
+    <h2><i class="fa-solid fa-clipboard"></i> Laporan Masuk</h2>
 
-            <!-- DROPDOWN REPORT -->
-            <button class="dropdown-btn">Report ▼</button>
+    <div class="card-table">
+        {% if reports %}
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Pelapor</th>
+                    <th>Kategori</th>
+                    <th>Deskripsi</th>
+                    <th>Status</th>
+                    <th>Tanggal</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
 
-            <div class="dropdown-content">
-                <a href="/report">Buat Laporan</a>
-                <a href="/report/laporan-saya">Laporan Saya</a>
-            </div>
+            <tbody>
+                {% for r in reports %}
+                <tr>
+                    <td data-label="No">{{ loop.index }}</td>
+                    <td data-label="Pelapor">{{ r.username }}</td>
+                    <td data-label="Kategori">{{ r.type }}</td>
 
-            <a href="#">Settings</a>
-        </div>
-        <div class="container">
-            <h2><i class="fa-solid fa-clipboard"></i> Laporan Masuk</h2>
+                    <td data-label="Deskripsi" class="col-desc">
+                        {{ r.description }}
+                    </td>
 
-            <div class="card-table">
-                {% if reports %}
-                <table>
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Pelapor</th>
-                            <th>Kategori</th>
-                            <th>Deskripsi</th>
-                            <th>Status</th>
-                            <th>Tanggal</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
+                    <td data-label="Status">
+                        <span class="badge {{ r.status }}">
+                            {{ r.status }}
+                        </span>
+                    </td>
 
-                    <tbody>
-                        {% for r in reports %}
-                        <tr>
-                            <td data-label="No">{{ loop.index }}</td>
-                            <td data-label="Pelapor">{{ r.username }}</td>
-                            <td data-label="Kategori">{{ r.type }}</td>
+                    <td data-label="Tanggal">
+                        {{ r.created_at.strftime("%d %b %Y") }}
+                    </td>
 
-                            <td data-label="Deskripsi" class="col-desc">
-                                {{ r.description }}
-                            </td>
+                    <td data-label="Aksi">
+                        {% if r.status == "pending" %}
+                        <form
+                            action="/report/{{ r.id }}/inspect"
+                            method="post"
+                            style="display: inline"
+                        >
+                            <button class="btn btn-process">Inspect</button>
+                        </form>
+                        {% endif %} {% if r.status == "process" %}
+                        <form
+                            action="/report/{{ r.id }}/approve"
+                            method="post"
+                            style="display: inline"
+                        >
+                            <button class="btn btn-approve">ACC</button>
+                        </form>
 
-                            <td data-label="Status">
-                                <span class="badge {{ r.status }}">
-                                    {{ r.status }}
-                                </span>
-                            </td>
+                        <form
+                            action="/report/{{ r.id }}/reject"
+                            method="post"
+                            style="display: inline"
+                        >
+                            <button class="btn btn-reject">Tolak</button>
+                        </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
-                            <td data-label="Tanggal">
-                                {{ r.created_at.strftime("%d %b %Y") }}
-                            </td>
+        {% else %}
+        <div class="empty">Belum ada laporan masuk.</div>
+        {% endif %}
+    </div>
+</div>
 
-                            <td data-label="Aksi">
-                                {% if r.status == "pending" %}
-                                <form
-                                    action="/report/{{ r.id }}/inspect"
-                                    method="post"
-                                    style="display: inline"
-                                >
-                                    <button class="btn btn-process">
-                                        Inspect
-                                    </button>
-                                </form>
-                                {% endif %} {% if r.status == "process" %}
-                                <form
-                                    action="/report/{{ r.id }}/approve"
-                                    method="post"
-                                    style="display: inline"
-                                >
-                                    <button class="btn btn-approve">ACC</button>
-                                </form>
-
-                                <form
-                                    action="/report/{{ r.id }}/reject"
-                                    method="post"
-                                    style="display: inline"
-                                >
-                                    <button class="btn btn-reject">
-                                        Tolak
-                                    </button>
-                                </form>
-                                {% endif %}
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-
-                {% else %}
-                <div class="empty">Belum ada laporan masuk.</div>
-                {% endif %}
-            </div>
-        </div>
-
-        <script src="{{ url_for('static', path='js/main.js') }}"></script>
-    </body>
-</html>
+{% endblock %}

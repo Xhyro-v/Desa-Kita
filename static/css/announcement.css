@@ -1,0 +1,188 @@
+:root {
+  --color-primary: #2d6a4f;
+  --color-primary-light: #74c69d;
+  --color-secondary: #1b4332;
+  --color-accent: #ffb703;
+  --color-info: #3a86ff;
+  --color-success: #52b788;
+  --color-danger: #e63946;
+
+  --color-bg: #f4f7f6;
+  --color-card: #ffffff;
+
+  --color-text-main: #2d3436;
+  --color-text-muted: #636e72;
+  --color-border: #dfe6e9;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text-main);
+  margin: 0;
+  padding: 20px;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  color: var(--color-secondary);
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.text-center { text-align: center; }
+
+.mt-1 { margin-top: 10px; }
+.mt-2 { margin-top: 20px; }
+
+.mb-1 { margin-bottom: 10px; }
+.mb-2 { margin-bottom: 20px; }
+
+.priority-penting {
+  border-left-color: var(--color-accent);
+}
+
+.priority-umum {
+  border-left-color: var(--color-info);
+}
+
+.priority-penting .badge {
+  background: var(--color-accent);
+  color: white;
+}
+
+.priority-umum .badge {
+  background: var(--color-info);
+  color: white;
+}
+.card, .card-ann {
+  background: var(--color-card);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: 0.2s ease;
+  border-left: 5px solid var(--color-border);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.badge {
+  font-size: 10px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: var(--color-border);
+  display: inline-block;
+}
+
+.btn {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--color-secondary);
+}
+
+.btn-danger {
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  background: none;
+}
+
+.btn-post {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+
+.btn-post:hover {
+  background-color: var(--color-secondary);
+}
+
+.btn-delete {
+  padding: 4px 10px;
+  background: none;
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-delete:hover {
+  background: var(--color-danger);
+  color: white;
+}
+
+.radio-group {
+  display: flex;
+  gap: 16px;
+  margin: 8px 0;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.label-penting {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.label-umum {
+  color: var(--color-info);
+  font-weight: 600;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.admin-form h3 {
+  margin-top: 0;
+  color: var(--color-secondary);
+}
+
+.admin-form {
+  max-width: 800px;
+  margin: 0 auto 20px;
+}

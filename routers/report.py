@@ -79,10 +79,15 @@ def post_report(request: Request,
 
 
 @router.get("/report/laporan-saya")
-def inspect_my_report(request:Request,  db: Session = Depends(get_db)):
+def my_report(request:Request,  db: Session = Depends(get_db)):
     username = request.session.get("user")
     role = request.session.get("role")
-    report = db.query(Report).filter(Report.username == username).all()
+
+
+
+    report = db.query(Report).filter(Report.username == username).order_by(Report.id.desc()).all()
+
+
 
     if not report:
         raise HTTPException(status_code=404, detail="Report not found")

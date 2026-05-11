@@ -26,7 +26,7 @@ A simple citizen reporting web application built using FastAPI.
 Clone repository:
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/Xhyro-v/Desa-Kita.git
 ```
 
 Install dependencies:

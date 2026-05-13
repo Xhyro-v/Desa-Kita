@@ -103,6 +103,6 @@ def login_user(
     request.session["role"] = user.role
     
     if user.role == "admin":
-        return RedirectResponse("/admin", status_code=303)
+        return RedirectResponse("/dashboard-admin", status_code=303)
     else:
         return RedirectResponse("/dashboard", status_code=303)

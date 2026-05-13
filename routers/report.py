@@ -169,7 +169,7 @@ def get_report_admin(request: Request, db: Session = Depends(get_db)):
       )
 
 
-@router.post("/report/{report_id}/inspect")
+@router.get("/report/{report_id}/inspect")
 def inspect_report(request:Request, report_id: int, db: Session = Depends(get_db)):
     report = db.query(Report).filter(Report.id == report_id).first()
     username = request.session.get("user")

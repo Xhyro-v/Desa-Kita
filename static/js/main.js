@@ -1,23 +1,28 @@
-const btn = document.getElementById("menu-btn");
-const sidebar = document.getElementById("sidebar");
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const dropdowns = document.querySelectorAll('.dropdown');
 
-btn.addEventListener("click", () => {
-    sidebar.classList.toggle("active");
-});
-
-const closeBtn = document.getElementById("close-btn");
-closeBtn.addEventListener("click", () => {
-    sidebar.classList.remove("active");
-});
-
-document.addEventListener("click", e => {
-    if (!sidebar.contains(e.target) && !btn.contains(e.target)) {
-        sidebar.classList.remove("active");
+    // Toggle Sidebar
+    function toggleSidebar() {
+        sidebar.classList.toggle('active');
+        overlay.classList.toggle('active');
     }
-});
-const dropdownBtn = document.querySelector(".dropdown-btn");
-const dropdownContent = document.querySelector(".dropdown-content");
 
-dropdownBtn.addEventListener("click", () => {
-    dropdownContent.classList.toggle("show");
+    menuBtn.addEventListener('click', toggleSidebar);
+    closeBtn.addEventListener('click', toggleSidebar);
+    overlay.addEventListener('click', toggleSidebar);
+
+    // Dropdown Logic
+    dropdowns.forEach(dropdown => {
+        const btn = dropdown.querySelector('.dropdown-btn');
+        btn.addEventListener('click', () => {
+            // Tutup dropdown lain jika ingin (optional)
+            // dropdowns.forEach(d => d !== dropdown && d.classList.remove('open'));
+            
+            dropdown.classList.toggle('open');
+        });
+    });
 });

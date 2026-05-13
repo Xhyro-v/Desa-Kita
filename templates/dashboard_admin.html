@@ -1,0 +1,148 @@
+{% extends "base.html" %} {% block css %}
+<title>DesaKita Dashboard Admin</title>
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', path='css/dashboard_admin.css') }}"
+/>
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+/>
+{% endblock %} {% block content %}
+
+<div class="dashboard">
+    <header class="topbar">
+        <div class="header-left">
+            <h2>DesaKita</h2>
+        </div>
+        <div class="user-avatar">
+            <img
+                src="https://ui-avatars.com/api/?name=Alex+Gibson&background=2d6a4f&color=fff"
+                alt="User"
+            />
+        </div>
+    </header>
+
+    <section class="greeting-section">
+        <div class="greeting-text">
+            <h3>Halo, Alex 👋</h3>
+            <p>Selamat datang kembali di dashboard laporan warga.</p>
+        </div>
+    </section>
+
+    <section class="stats-grid">
+        <div class="stat-card primary">
+            <div class="stat-info">
+                <span class="label">Total Laporan</span>
+                <h2 class="value">{{ total_reports }}</h2>
+                <span class="trend">+12% bulan ini</span>
+            </div>
+            <div class="stat-icon-main">
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+                    <path
+                        d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                    ></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+            </div>
+        </div>
+
+        <div class="stat-card-mini pending">
+            <div class="mini-icon">⏳</div>
+            <div class="mini-data">
+                <span class="label">Pending</span>
+                <span class="value">{{ pending_reports }}</span>
+            </div>
+        </div>
+
+        <div class="stat-card-mini process">
+            <div class="mini-icon">⚙️</div>
+            <div class="mini-data">
+                <span class="label">Process</span>
+                <span class="value">{{ processed_reports }}</span>
+            </div>
+        </div>
+
+        <div class="stat-card-mini approved">
+            <div class="mini-icon">✅</div>
+            <div class="mini-data">
+                <span class="label">Approved</span>
+                <span class="value">{{ approved_reports }}</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="content-layout">
+        <section class="recent-report">
+            <div class="section-header">
+                <h3>Laporan Terbaru</h3>
+                <a href="/admin/report" class="see-all">Lihat Semua</a>
+            </div>
+
+            {% for rep in latest_reports %}
+            <div class="report-card">
+                <div class="report-top">
+                    <div class="report-info">
+                        <h4>{{ rep.type }}</h4>
+                        <small>{{ rep.created_at.strftime("%d %b %Y") }}</small>
+                    </div>
+
+                    <span class="status approved">Approved</span>
+
+
+
+                </div>
+                  <p class="description">
+                      {% if rep.description|length > 30 %}
+                         {{ rep.description[:30] }}...
+                      {% else %}
+                        {{ rep.description }}
+                      {% endif %}
+                  </p>
+                <div class="report-footer">
+                    <a class="btn-detail" href="/report/{{rep.id}}/inspect">
+                        Detail
+                    </a>
+                </div>
+            </div>
+        </section>
+        {% endfor %}
+
+        <aside class="announcement-section">
+            <div class="section-header">
+                <h3>Pengumuman</h3>
+            </div>
+
+            <div class="announcement-card">
+                <div class="ann-accent"></div>
+                <h4>Kerja Bakti Desa</h4>
+                <p>
+                    Diharapkan kehadiran warga untuk kerja bakti minggu besok...
+                </p>
+            </div>
+
+            <div class="announcement-card">
+                <div class="ann-accent blue"></div>
+                <h4>Vaksinasi Gratis</h4>
+                <p>Puskesmas akan mengadakan vaksinasi booster tahap 2...</p>
+            </div>
+            <div class="announcement-card">
+              
+            <a href="announcement" class="announcement-card create-announcement">
+                <div class="ann-accent dashed"></div>
+                <div class="create-content">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Tambah Pengumuman</span>
+                </div>
+            </a>
+            </div>
+        </aside>
+    </div>
+</div>
+{% endblock %}

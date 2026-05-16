@@ -19,7 +19,7 @@ Base.metadata.create_all(bind=engine)
 
 router = APIRouter()
 
-app.add_middleware(SessionMiddleware, secret_key="secret123")
+app.add_middleware(SessionMiddleware, secret_key="MaxEmillianVerstappen")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.include_router(auth.router, prefix="/auth")
 app.include_router(dashboard.router)

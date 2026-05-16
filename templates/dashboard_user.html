@@ -1,145 +1,179 @@
-{% extends "base.html" %}
-{% block css %}
+{% extends "base.html" %} {% block css %}
 <title>DesaKita Dashboard</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='css/dashboard.css') }}" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-            rel="stylesheet"
-        />
-{% endblock %}
-{% block content %}
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', path='css/dashboard_admin.css') }}"
+/>
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+/>
+{% endblock %} {% block content %}
 
-        <div class="dashboard">
-            <header class="topbar">
-                <div class="header-left">
-                    <h2>DesaKita</h2>
-                </div>
-                <div class="user-avatar">
-                    <img
-                        src="https://ui-avatars.com/api/?name=Alex+Gibson&background=2d6a4f&color=fff"
-                        alt="User"
-                    />
-                </div>
-            </header>
+<div class="dashboard">
+    <header class="topbar">
+        <div class="header-left">
+            <h2>DesaKita</h2>
+        </div>
+        <div class="user-avatar">
+            <img
+                src="https://ui-avatars.com/api/?name={{username}}&background=2d6a4f&color=fff"
+                alt="User"
+            />
+        </div>
+    </header>
 
-            <section class="greeting-section">
-                <div class="greeting-text">
-                    <h3>Halo, Alex 👋</h3>
-                    <p>Selamat datang kembali di dashboard laporan warga.</p>
-                </div>
-            </section>
+    <section class="greeting-section">
+        <div class="greeting-text">
+            <h3>Halo, {{ username }} 👋</h3>
+            <p>Selamat datang kembali di dashboard laporan warga.</p>
+        </div>
+    </section>
 
-            <section class="stats-grid">
-                <div class="stat-card primary">
-                    <div class="stat-info">
-                        <span class="label">Total Laporan</span>
-                        <h2 class="value">1,248</h2>
-                        <span class="trend">+12% bulan ini</span>
-                    </div>
-                    <div class="stat-icon-main">
-                        <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                        >
-                            <path
-                                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                            ></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="stat-card-mini pending">
-                    <div class="mini-icon">⏳</div>
-                    <div class="mini-data">
-                        <span class="label">Pending</span>
-                        <span class="value">45</span>
-                    </div>
-                </div>
-
-                <div class="stat-card-mini process">
-                    <div class="mini-icon">⚙️</div>
-                    <div class="mini-data">
-                        <span class="label">Process</span>
-                        <span class="value">12</span>
-                    </div>
-                </div>
-
-                <div class="stat-card-mini approved">
-                    <div class="mini-icon">✅</div>
-                    <div class="mini-data">
-                        <span class="label">Approved</span>
-                        <span class="value">1,120</span>
-                    </div>
-                </div>
-            </section>
-
-            <div class="content-layout">
-                <section class="recent-report">
-                    <div class="section-header">
-                        <h3>Laporan Terbaru</h3>
-                        <a href="#" class="see-all">Lihat Semua</a>
-                    </div>
-
-                    <div class="report-card">
-                        <div class="report-top">
-                            <div class="report-info">
-                                <h4>Perbaikan Jalan</h4>
-                                <small>12 Mei 2024</small>
-                            </div>
-                            <span class="status approved">Approved</span>
-                        </div>
-                        <p class="description">
-                            Laporan mengenai lubang jalan di area RT 04 sudah
-                            dikonfirmasi...
-                        </p>
-                        <div class="report-footer">
-                            <button class="btn-detail">Detail</button>
-                        </div>
-                    </div>
-
-                    <div class="report-card">
-                        <div class="report-top">
-                            <div class="report-info">
-                                <h4>Lampu Jalan Mati</h4>
-                                <small>11 Mei 2024</small>
-                            </div>
-                            <span class="status pending">Pending</span>
-                        </div>
-                        <p class="description">
-                            Sudah 3 hari lampu jalan depan pos ronda padam...
-                        </p>
-                        <div class="report-footer">
-                            <button class="btn-detail">Detail</button>
-                        </div>
-                    </div>
-                </section>
-
-                <aside class="announcement-section">
-                    <div class="section-header">
-                        <h3>Pengumuman</h3>
-                    </div>
-
-                    <div class="announcement-card">
-                        <div class="ann-accent"></div>
-                        <h4>Kerja Bakti Desa</h4>
-                        <p>
-                            Diharapkan kehadiran warga untuk kerja bakti minggu
-                            besok...
-                        </p>
-                    </div>
-
-                    <div class="announcement-card">
-                        <div class="ann-accent blue"></div>
-                        <h4>Vaksinasi Gratis</h4>
-                        <p>
-                            Puskesmas akan mengadakan vaksinasi booster tahap
-                            2...
-                        </p>
-                    </div>
-                </aside>
+    <section class="stats-grid">
+        <div class="stat-card primary">
+            <div class="stat-info">
+                <span class="label">Total Laporan Saya</span>
+                <h2 class="value">{{ total_reports }}</h2>
+                <span class="trend">+12% bulan ini</span>
+            </div>
+            <div class="stat-icon-main">
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+                    <path
+                        d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                    ></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
             </div>
         </div>
+
+        <div class="stat-card-mini pending">
+            <div class="mini-icon"><i class="fa-regular fa-clock"></i></div>
+            <div class="mini-data">
+                <span class="label">Pending</span>
+                <span class="value">{{ pending_reports }}</span>
+            </div>
+        </div>
+
+        <div class="stat-card-mini process">
+            <div class="mini-icon"><i class="fa-solid fa-spinner"></i></div>
+            <div class="mini-data">
+                <span class="label">Process</span>
+                <span class="value">{{ processed_reports }}</span>
+            </div>
+        </div>
+
+        <div class="stat-card-mini approved">
+            <div class="mini-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="mini-data">
+                <span class="label">Approved</span>
+                <span class="value">{{ approved_reports }}</span>
+            </div>
+        </div>
+  
+        <div class="stat-card-mini rejected">
+            <div class="mini-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+            <div class="mini-data">
+                <span class="label">Rejected</span>
+                <span class="value">{{ rejected_reports }}</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="content-layout">
+        <section class="recent-report">
+            <div class="section-header">
+                <h3>Laporan Terbaru Saya</h3>
+                <a href="/report/laporan-saya" class="see-all">Lihat Semua</a>
+            </div>
+
+            {% for rep in latest_reports %}
+            {% if rep.status == "pending" or "process" %}
+              <div class="report-card">
+                  <div class="report-top">
+                      <div class="report-info">
+                          <h4>{{ rep.type }}</h4>
+                          <small>{{ rep.created_at.strftime("%d %b %Y") }}</small>
+                      </div>
+  
+                      
+                      {% if rep.status == "pending" %}
+                          <span class="status pending">Pending</span>
+                      
+                      {% elif rep.status == "process" %}
+                          <span class="status process">Processed</span>
+                      
+                      {% endif %}
+            {% else %}
+              <div class="empty">Tidak ada laporan terbaru</div>
+            {% endif %}
+    
+                  </div>
+                    <p class="description">
+                        {% if rep.description|length > 30 %}
+                           {{ rep.description[:45] }}...
+                        {% else %}
+                          {{ rep.description }}
+                        {% endif %}
+                    </p>
+                  <div class="report-footer">
+                      <a class="btn-detail" href="/report/{{rep.id}}/inspect">
+                          Detail
+                      </a>
+                  </div>
+              </div>
+              <div class="report-card">
+              
+                <a href="report" class="announcement-card create-announcement">
+                    <div class="ann-accent dashed"></div>
+                    <div class="create-content">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Buat Laporan</span>
+                    </div>
+                </a>
+              </div>
+        {% endfor %}
+        </section>
+
+        <aside class="announcement-section">
+          {% for ann in latest_announcements %}
+            <div class="section-header">
+                <h3>Pengumuman</h3>
+            </div>
+
+            <div class="announcement-card">
+              {% if ann.priority == "penting" %}
+                <div class="ann-accent"></div>
+                <h4>{{ ann.title }}</h4>
+                <p>
+                   {% if ann.content|length > 30 %}
+                      {{ ann.content[:45] }}...
+                   {% else %}
+                       {{ ann.content }}
+                   {% endif %}
+                </p>
+              {% else %}
+                <div class="ann-accent blue"></div>
+                <h4>{{ ann.title }}</h4>
+                <p>
+                   {% if ann.content|length > 30 %}
+                      {{ ann.content[:45] }}...
+                   {% else %}
+                       {{ ann.content }}
+                   {% endif %}
+                </p>
+              {% endif %}
+            </div>
+
+
+          {% endfor %}
+        </aside>
+    </div>
+</div>
 {% endblock %}

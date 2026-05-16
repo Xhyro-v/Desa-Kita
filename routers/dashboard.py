@@ -9,25 +9,90 @@ router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 
 @router.get("/dashboard", response_class=HTMLResponse)
-def dashboard(request: Request):
+def dashboard(request: Request, db: Session = Depends(get_db)):
     username = request.session.get("user")
-    if request.session.get("role") != "user":
+    role = request.session.get("role")
+    if role != "user":
         return RedirectResponse("/dashboard-admin", status_code=303)
+    
+    latest_announcements = (
+    db.query(Announcement)
+    .order_by(Announcement.id.desc())
+    .limit(2)
+    .all()
+)
 
+    total_reports = (
+        db.query(Report)
+        .filter(Report.username == username)
+        .count()
+    )
+    
+    latest_reports = (
+        db.query(Report)
+        .filter(Report.username == username)
+        .order_by(Report.id.desc())
+        .limit(1)
+        .all()
+    )
+
+    approved_reports = (
+        db.query(Report)
+        .filter(
+          Report.username == username,
+          Report .status == "approved")
+        .count()
+    )
+    pending_reports = (
+        db.query(Report)
+        .filter(
+          Report.username == username,
+          Report .status == "pending")
+        .count()
+    )
+    processed_reports = (
+        db.query(Report)
+        .filter(
+          Report.username == username,
+          Report .status == "process")
+        .count()
+    )
+
+    rejected_reports = (
+        db.query(Report)
+        .filter(
+          Report.username == username,
+          Report .status == "rejected")
+        .count()
+    )
+    
 
     return templates.TemplateResponse(
         "dashboard_user.html",
         {
             "request": request,
-            "username": username
+            "username": username,
+            "role": role,
+            "total_reports": total_reports,
+            "latest_announcements":latest_announcements,
+            "latest_reports": latest_reports,
+            "approved_reports": approved_reports,
+            "rejected_reports": rejected_reports,
+            "pending_reports": pending_reports,
+            "processed_reports": processed_reports
         }
     )
+
 
 
 @router.get("/dashboard-admin")
 def admin_dashboard(request: Request, db: Session = Depends(get_db)):
 
-    if not request.session.get("user"):
+    role = request.session.get("role")
+    username = request.session.get("user")
+
+
+    if not role:
         return RedirectResponse("/auth/login", status_code=303)
 
 
@@ -47,14 +112,15 @@ def admin_dashboard(request: Request, db: Session = Depends(get_db)):
 
 
 
-    if request.session.get("role") != "admin":
+    if role != "admin":
         return RedirectResponse("/dashboard", status_code=303)
 
     return templates.TemplateResponse(
         "dashboard_admin.html",
         {
             "request": request,
-            "username": request.session.get("user"),
+            "username": username,
+            "role":role,
             "total_reports": total_reports,
             "approved_reports": approved_reports,
             "rejected_reports": rejected_reports,
@@ -65,3 +131,4 @@ def admin_dashboard(request: Request, db: Session = Depends(get_db)):
             
         }
     )
+

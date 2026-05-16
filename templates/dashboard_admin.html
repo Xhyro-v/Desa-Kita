@@ -18,7 +18,7 @@
         </div>
         <div class="user-avatar">
             <img
-                src="https://ui-avatars.com/api/?name={{username}}&background=2d6a4f&color=fff"
+                src="https://ui-avatars.com/api/?name={{ username }}&background=2d6a4f&color=fff"
                 alt="User"
             />
         </div>
@@ -26,7 +26,7 @@
 
     <section class="greeting-section">
         <div class="greeting-text">
-            <h3>Halo, {{ username }} 👋</h3>
+            <h3>Halo, {{ username }} <i class="fa-regular fa-hand"></i></h3>
             <p>Selamat datang kembali di dashboard laporan warga.</p>
         </div>
     </section>
@@ -54,7 +54,7 @@
         </div>
 
         <div class="stat-card-mini pending">
-            <div class="mini-icon">⏳</div>
+            <div class="mini-icon"><i class="fa-regular fa-clock"></i></div>
             <div class="mini-data">
                 <span class="label">Pending</span>
                 <span class="value">{{ pending_reports }}</span>
@@ -62,7 +62,7 @@
         </div>
 
         <div class="stat-card-mini process">
-            <div class="mini-icon">⚙️</div>
+            <div class="mini-icon"><i class="fa-solid fa-spinner"></i></div>
             <div class="mini-data">
                 <span class="label">Process</span>
                 <span class="value">{{ processed_reports }}</span>
@@ -70,10 +70,18 @@
         </div>
 
         <div class="stat-card-mini approved">
-            <div class="mini-icon">✅</div>
+            <div class="mini-icon"><i class="fa-solid fa-circle-check"></i></div>
             <div class="mini-data">
                 <span class="label">Approved</span>
                 <span class="value">{{ approved_reports }}</span>
+            </div>
+        </div>
+  
+        <div class="stat-card-mini rejected">
+            <div class="mini-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+            <div class="mini-data">
+                <span class="label">Rejected</span>
+                <span class="value">{{ rejected_reports }}</span>
             </div>
         </div>
     </section>

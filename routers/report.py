@@ -101,7 +101,7 @@ def my_report(request:Request,  db: Session = Depends(get_db)):
         {
             "request": request,
             "reports": report,
-            "role": request.session.get("role")
+            "role": role
         }
     )
 
@@ -164,7 +164,7 @@ def get_report_admin(request: Request, db: Session = Depends(get_db)):
           {
               "request": request,
               "reports": reports,
-              "role": request.session.get("role")
+              "role": role
           }
       )
 
@@ -190,7 +190,7 @@ def inspect_report(request:Request, report_id: int, db: Session = Depends(get_db
         {
             "request": request,
             "report": report,
-            "role": request.session.get("role")
+            "role": role
         }
     )
 

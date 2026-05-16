@@ -13,6 +13,19 @@
     --color-text-main: #2d3436;
     --color-text-muted: #636e72;
     --color-border: #dfe6e9;
+    --color-border-light: #f0e4d6;
+
+    --sidebar-bg: #2c1810;
+    --sidebar-hover: #c0392b;
+    --sidebar-active: #c0392b;
+
+    --shadow-sm: 0 2px 8px rgba(44, 24, 16, 0.08);
+    --shadow-md: 0 6px 20px rgba(44, 24, 16, 0.12);
+    --shadow-lg: 0 12px 40px rgba(44, 24, 16, 0.16);
+
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
 }
 
 *,

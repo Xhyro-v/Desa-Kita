@@ -29,29 +29,48 @@
             </div>
 
             <nav class="sidebar-nav">
-                <a href="{{ '/dashboard-admin' if role == 'admin' else '/dashboard' }}" class="nav-link">
-                    <span class="icon"><i class="fa-solid fa-house"></i></span> Home
+                <a
+                    href="{{ '/dashboard-admin' if role == 'admin' else '/dashboard' }}"
+                    class="nav-link"
+                >
+                    <span class="icon"><i class="fa-solid fa-house"></i></span>
+                    Home
                 </a>
 
                 <a href="/announcement" class="nav-link">
-                    <span class="icon"><i class="fa-solid fa-bullhorn"></i></span> Announcements
+                    <span class="icon"
+                        ><i class="fa-solid fa-bullhorn"></i
+                    ></span>
+                    Announcements
                 </a>
 
+                {% if role == "admin" %}
+                <a href="/report" class="nav-link">
+                    <span class="icon"
+                        ><i class="fa-solid fa-file-lines"></i
+                    ></span>
+                    Report
+                </a>
+
+                {% elif role == "user" %}
                 <div class="dropdown">
                     <button class="dropdown-btn">
-                        <span class="icon"><i class="fa-solid fa-file-lines"></i></span> Report
+                        <span class="icon"
+                            ><i class="fa-solid fa-file-lines"></i
+                        ></span>
+                        Report
                         <span class="arrow">▼</span>
                     </button>
                     <div class="dropdown-content">
                         <a href="/report">Buat Laporan</a>
-                        {% if role == "user" %}
                         <a href="/report/laporan-saya">Laporan Saya</a>
-                        {% endif %}
                     </div>
                 </div>
+                {% endif %}
 
                 <a href="#" class="nav-link">
-                    <span class="icon"><i class="fa-solid fa-gear"></i></span> Pengaturan
+                    <span class="icon"><i class="fa-solid fa-gear"></i></span>
+                    Pengaturan
                 </a>
             </nav>
         </div>

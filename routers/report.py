@@ -106,7 +106,6 @@ def my_report(request:Request,  db: Session = Depends(get_db)):
     )
 
 
-
 @router.post("/report/delete/{report_id}")
 def delete_report(
     report_id: int,
@@ -180,9 +179,9 @@ def inspect_report(request:Request, report_id: int, db: Session = Depends(get_db
   
     if not username:
       return RedirectResponse("/auth/login", status_code=303)
-  
-    if role != "admin":
-      return RedirectResponse("/report", status_code=303)
+
+    if role == "user" and report.username != username:
+      raise HTTPException(status_code=403, detail="Forbidden")
 
       
     return templates.TemplateResponse(

@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeBtn = document.getElementById('close-btn');
     const dropdowns = document.querySelectorAll('.dropdown');
 
-    // Toggle Sidebar
     function toggleSidebar() {
         sidebar.classList.toggle('active');
         overlay.classList.toggle('active');
@@ -15,14 +14,40 @@ document.addEventListener('DOMContentLoaded', function() {
     closeBtn.addEventListener('click', toggleSidebar);
     overlay.addEventListener('click', toggleSidebar);
 
-    // Dropdown Logic
     dropdowns.forEach(dropdown => {
         const btn = dropdown.querySelector('.dropdown-btn');
         btn.addEventListener('click', () => {
-            // Tutup dropdown lain jika ingin (optional)
-            // dropdowns.forEach(d => d !== dropdown && d.classList.remove('open'));
+
             
             dropdown.classList.toggle('open');
         });
     });
+});
+
+
+const btnHapus = document.getElementById('btnHapus');
+const modalOverlay = document.getElementById('modalKonfirmasi');
+const btnBatal = document.getElementById('btnBatal');
+const btnKonfirmasiHapus = document.getElementById('btnKonfirmasiHapus');
+
+btnHapus.addEventListener('click', () => {
+    modalOverlay.style.display = 'flex'; 
+});
+
+btnBatal.addEventListener('click', () => {
+    modalOverlay.style.display = 'none';
+});
+
+
+btnKonfirmasiHapus.addEventListener('click', () => {
+    modalOverlay.style.display = 'none';
+    
+    alert("Data berhasil diproses untuk dihapus!"); 
+});
+
+
+window.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) {
+        modalOverlay.style.display = 'none';
+    }
 });

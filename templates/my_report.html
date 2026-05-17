@@ -1,80 +1,76 @@
-{% extends "base.html" %}
-{%block css%}
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="{{ url_for('static', path='css/report.css') }}"
-        />
-        <title>My Report</title>
-{%endblock%}
-{% block content %}
-        <div style="text-align: center; padding: 24px 0 8px">
-            <h1 style="margin-bottom: 4px">
-                <i class="fa-solid fa-clipboard"></i>Laporan Saya
-            </h1>
-            <p
-                style="
-                    color: var(--color-text-muted);
-                    font-size: 0.85rem;
-                    letter-spacing: 0.04em;
-                    text-transform: uppercase;
-                "
-            >
-                Sampaikan keluhan atau kejadian di lingkungan Anda
-            </p>
-            <div class="section-divider" style="margin-top: 12px"></div>
-        </div>
-            <div class="container">
-                <div class="card-table">
-                    {% if reports %}
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Kategori</th>
-                                <th>Deskripsi</th>
-                                <th>Status</th>
-                                <th>Tanggal</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
+{% extends "base.html" %} {%block css%}
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', path='css/report.css') }}"
+/>
+<title>My Report</title>
+{%endblock%} {% block content %}
+<div style="text-align: center; padding: 24px 0 8px">
+    <h1 style="margin-bottom: 4px">
+        <i class="fa-solid fa-clipboard"></i>Laporan Saya
+    </h1>
+    <p
+        style="
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        "
+    >
+        Sampaikan keluhan atau kejadian di lingkungan Anda
+    </p>
+    <div class="section-divider" style="margin-top: 12px"></div>
+</div>
+<div class="container">
+    <div class="card-table">
+        {% if reports %}
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Kategori</th>
+                    <th>Deskripsi</th>
+                    <th>Status</th>
+                    <th>Tanggal</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
 
-                        <tbody>
-                            {% for r in reports %}
-                            <tr>
-                                <td>{{ loop.index }}</td>
-                                <td>{{ r.type }}</td>
+            <tbody>
+                {% for r in reports %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ r.type }}</td>
 
-                                <td class="col-desc">{{ r.description }}</td>
+                    <td class="col-desc">{{ r.description }}</td>
 
-                                <td>
-                                    <span class="badge {{ r.status }}">
-                                        {{ r.status }}
-                                    </span>
-                                </td>
+                    <td>
+                        <span class="badge {{ r.status }}">
+                            {{ r.status }}
+                        </span>
+                    </td>
 
-                                <td>{{ r.created_at.strftime("%d %b %Y") }}</td>
+                    <td>{{ r.created_at.strftime("%d %b %Y") }}</td>
 
-                                <td>
-                                    {% if r.status == "pending" %}
-                                    <form
-                                        action="/report/delete/{{ r.id }}"
-                                        method="post"
-                                    >
-                                        <button class="btn btn-rep-delete">
-                                            <i class="fa-solid fa-trash"></i>
-                                            Hapus
-                                        </button>
-                                    </form>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    {% else %}
-                    <div class="empty">Belum ada laporan</div>
-                    {% endif %}
-                </div>
-            </div>
+                    <td data-label="Aksi">
+                        {% if r.status != "approved" or "rejected" %}
+                        <form
+                            action="/report/{{ r.id }}/inspect"
+                            method="get"
+                            style="display: inline"
+                        >
+                            <button class="btn btn-process">Inspect</button>
+                        </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty">Belum ada laporan</div>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

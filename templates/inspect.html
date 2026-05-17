@@ -50,21 +50,37 @@
                 </div>
             </div>
 
-            <div class="actions">
-                <form action="/report/{{ report.id }}/process" method="post">
-                    <button class="btn btn-process">Proses</button>
-                </form>
+            {% if role == "admin" %}
+              <div class="actions">
+                  <form action="/report/{{ report.id }}/process" method="post">
+                      <button class="btn btn-process">Proses</button>
+                  </form>
 
-                <form action="/report/{{ report.id }}/approve" method="post">
-                    <button class="btn btn-approve">Setujui</button>
-                </form>
+                  <form action="/report/{{ report.id }}/approve" method="post">
+                      <button class="btn btn-approve">Setujui</button>
+                  </form>
 
-                <form action="/report/{{ report.id }}/reject" method="post">
-                    <button class="btn btn-reject">Tolak</button>
-                </form>
-                
-                <a href="/dashboard" class="btn btn-back">Kembali</a>
-            </div>
+                  <form action="/report/{{ report.id }}/reject" method="post">
+                      <button class="btn btn-reject">Tolak</button>
+                  </form>
+
+                  <a href="/admin/report" class="btn btn-back">Kembali</a>
+              </div>
+
+            {% elif role == "user" %}
+                {% if report.status == "pending" %}
+                    <div class="actions">
+                        <form action="/report/delete/{{ report.id }}" method="post">
+                            <button class="btn btn-reject">Hapus</button>
+                        </form>
+                        <a href="/report/laporan-saya" class="btn btn-back">Kembali</a>
+                    </div>
+                {% elif report.status != "pending" %}
+                    <div class="actions">
+                        <a href="/report/laporan-saya" class="btn btn-back">Kembali</a>
+                    </div>
+                {% endif %}
+            {% endif %}
         </main>
     </div>
 </body>

@@ -1,0 +1,91 @@
+/* Style untuk tombol utama di halaman web */
+.btn-buka-modal {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Overlay (Latar belakang gelap yang menutupi seluruh layar) */
+.modal-overlay {
+    display: none; /* Tersembunyi secara default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Efek gelap transparan */
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card Utama Pembuat Peringatan */
+.modal-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    /* Animasi halus saat card muncul */
+    animation: muncul 0.3s ease-out;
+}
+
+.modal-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.modal-card h2 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.modal-card p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+/* Flexbox untuk merapikan posisi tombol */
+.modal-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.modal-buttons button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-batal {
+    background-color: #f0f0f0;
+    color: #333;
+}
+.btn-batal:hover { background-color: #e4e4e4; }
+
+.btn-hapus {
+    background-color: #dc3545;
+    color: white;
+}
+.btn-hapus:hover { background-color: #c82333; }
+
+/* Animasi CSS Keyframes */
+@keyframes muncul {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}

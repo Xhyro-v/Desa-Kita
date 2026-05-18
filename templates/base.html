@@ -11,6 +11,10 @@
             rel="stylesheet"
             href="{{ url_for('static', path='css/base.css') }}"
         />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', path='css/modal_reconfirm.css') }}"
+        />
 
         {% block css %} {% endblock %}
 
@@ -74,6 +78,24 @@
                 </a>
             </nav>
         </div>
+
+        <div id="modalKonfirmasi" class="modal-overlay">
+            <div class="modal-card">
+                <div class="modal-icon">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+
+                <h2 id="modalTitle">Konfirmasi</h2>
+                <p id="modalMessage">Apakah Anda yakin?</p>
+
+                <div class="modal-buttons">
+                    <button id="btnBatal" class="btn-batal">Batal</button>
+                    <button id="btnKonfirmasi" class="btn-hapus">Ya</button>
+                </div>
+            </div>
+        </div>
+
+        <form id="formGlobal" method="post" style="display: none"></form>
 
         <main>{% block content %} {% endblock %}</main>
 

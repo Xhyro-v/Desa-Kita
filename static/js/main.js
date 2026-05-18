@@ -25,29 +25,67 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-const btnHapus = document.getElementById('btnHapus');
-const modalOverlay = document.getElementById('modalKonfirmasi');
-const btnBatal = document.getElementById('btnBatal');
-const btnKonfirmasiHapus = document.getElementById('btnKonfirmasiHapus');
+let selectedAction = null;
 
-btnHapus.addEventListener('click', () => {
-    modalOverlay.style.display = 'flex'; 
+const modal = document.getElementById("modalKonfirmasi");
+const btnBatal = document.getElementById("btnBatal");
+const btnKonfirmasi = document.getElementById("btnKonfirmasi");
+
+const modalTitle = document.getElementById("modalTitle");
+const modalMessage = document.getElementById("modalMessage");
+
+const formGlobal = document.getElementById("formGlobal");
+
+// fungsi buka modal (INI KUNCI NYA)
+function openModal({ title, message, action }) {
+    modalTitle.innerText = title;
+    modalMessage.innerText = message;
+    selectedAction = action;
+
+    modal.style.display = "flex";
+}
+
+// tombol batal
+btnBatal.addEventListener("click", () => {
+    modal.style.display = "none";
+    selectedAction = null;
 });
 
-btnBatal.addEventListener('click', () => {
-    modalOverlay.style.display = 'none';
-});
-
-
-btnKonfirmasiHapus.addEventListener('click', () => {
-    modalOverlay.style.display = 'none';
-    
-    alert("Data berhasil diproses untuk dihapus!"); 
-});
-
-
-window.addEventListener('click', (e) => {
-    if (e.target === modalOverlay) {
-        modalOverlay.style.display = 'none';
+// klik luar
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+        modal.style.display = "none";
     }
 });
+
+// konfirmasi
+btnKonfirmasi.addEventListener("click", () => {
+    if (!selectedAction) return;
+
+    selectedAction(); // jalankan aksi apapun
+    modal.style.display = "none";
+});
+
+function handleDeleteAnnouncement(id) {
+    openModal({
+        title: "Hapus Pengumuman?",
+        message: "Data tidak bisa dikembalikan.",
+        action: () => {
+            const form = document.getElementById("formGlobal");
+            form.action = "/announcement/delete/" + id;
+            form.submit();
+        }
+    });
+}
+
+function handleDeleteReport(id) {
+    openModal({
+        title: "Hapus Laporan?",
+        message: "Data tidak bisa dikembalikan.",
+        action: () => {
+            const form = document.getElementById("formGlobal");
+            form.action = "/report/delete/" + id;
+            form.submit();
+        }
+    });
+}

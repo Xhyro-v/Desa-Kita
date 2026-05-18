@@ -1,101 +1,77 @@
-{% extends "base.html" %}
-{% block css %}
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="{{ url_for('static', path='css/announcement.css') }}"
-        />
-        <title>Announcements | Desa-Kita</title>
-{% endblock %}
-{% block content %}
-        <h1><i class="fa-solid fa-bullhorn"></i> Pengumuman</h1>
+{% extends "base.html" %} {% block css %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', path='css/announcement.css') }}"
+/>
+<title>Announcements | Desa-Kita</title>
+{% endblock %} {% block content %}
+<h1><i class="fa-solid fa-bullhorn"></i> Pengumuman</h1>
 
-        {% if role == "admin" %}
-        <div class="card admin-form">
-            <h3>Buat Pengumuman Baru</h3>
-            <form method="post" action="/announcement">
+{% if role == "admin" %}
+<div class="card admin-form">
+    <h3>Buat Pengumuman Baru</h3>
+    <form method="post" action="/announcement">
+        <div class="form-group">
+            <label>Judul Pengumuman</label>
+            <input name="title" required minlength="3" />
+        </div>
 
-                <div class="form-group">
-                    <label>Judul Pengumuman</label>
-                    <input
-                        name="title"
-                        placeholder="Contoh: Jadwal Gotong Royong RT 05"
-                        required
-                        minlength="3"
-                    />
-                </div>
+        <div class="form-group">
+            <label>Isi Pengumuman</label>
+            <textarea name="content" required minlength="5"></textarea>
+        </div>
 
-                <div class="form-group">
-                    <label>Isi Pengumuman</label>
-                    <textarea
-                        name="content"
-                        placeholder="Tulis isi pengumuman secara lengkap..."
-                        required
-                        minlength="5"
-                        style="min-height: 110px;"
-                    ></textarea>
-                </div>
+        <div class="radio-group">
+            <label>
+                <input type="radio" name="priority" value="penting" required />
+                <span class="label-penting">Penting</span>
+            </label>
+            <label>
+                <input type="radio" name="priority" value="umum" />
+                <span class="label-umum">Umum</span>
+            </label>
+        </div>
 
-                <div class="radio-group">
-                    <label>
-                        <input
-                            type="radio"
-                            name="priority"
-                            value="penting"
-                            required
-                        />
-                        <span class="label-penting">Penting</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="priority" value="umum" />
-                        <span class="label-umum">Umum</span>
-                    </label>
-                </div>
+        <button type="submit" class="btn-post">
+            <i class="fa-solid fa-paper-plane"></i> Posting
+        </button>
+    </form>
+</div>
+{% endif %}
 
-                <button type="submit" class="btn-post">
-                    <span> <i class="fa-solid fa-paper-plane"></i></span> Posting
+<div class="container">
+    {% for ann in announcements %}
+    <div
+        class="card-ann {{ 'priority-penting' if ann.priority == 'penting' else 'priority-umum' }}"
+    >
+        <div class="content">
+            <span class="badge">{{ ann.priority | upper }}</span>
+            <h3>{{ ann.title }}</h3>
+            <p>{{ ann.content }}</p>
+
+            <hr />
+
+            <div class="meta">
+                <small>
+                    Oleh <strong>{{ ann.author }}</strong> • {{
+                    ann.created_at.strftime('%d %b %Y') }}
+                </small>
+
+                {% if role == "admin" %}
+                <button
+                    type="button"
+                    class="btn-delete"
+                    onclick="handleDeleteAnnouncement('{{ ann.id }}')"
+                >
+                    Hapus
                 </button>
-            </form>
-        </div>
-        {% endif %}
-
-        <div class="container">
-            {% for ann in announcements %}
-            <div
-                class="card-ann {{ 'priority-penting' if ann.priority == 'penting' else 'priority-umum' }}"
-            >
-                <div class="content">
-                    <span class="badge">{{ ann.priority | upper }}</span>
-                    <h3>{{ ann.title }}</h3>
-                    <p>{{ ann.content }}</p>
-                    <hr />
-                    <div class="meta">
-                        <small
-                            >Oleh <strong>{{ ann.author }}</strong> • {{
-                            ann.created_at.strftime('%d %b %Y') }}</small
-                        >
-
-                        {% if role == "admin" %}
-                        <form
-                            method="post"
-                            action="/announcement/delete/{{ ann.id }}"
-                            style="display: inline"
-                        >
-                            <button
-                                type="submit"
-                                class="btn-delete"
-                                onclick="
-                                    return confirm('Hapus pengumuman ini?');
-                                "
-                            >
-                                <i class="fa-solid fa-trash"></i>
-                                Hapus
-                            </button>
-                        </form>
-                        {% endif %}
-                    </div>
-                </div>
+                {% endif %}
             </div>
-            {% endfor %}
         </div>
+    </div>
+    {% endfor %}
+</div>
+
+<form id="formHapus" method="post" style="display: none"></form>
+
 {% endblock %}

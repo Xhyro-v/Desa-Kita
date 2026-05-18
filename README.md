@@ -55,8 +55,6 @@ python -m uvicorn main:app --reload
 ## Future Plans
 
 - Image upload
-- Better mobile UI
-- Dashboard Panel(Being worked on)
 
 ## Author
 

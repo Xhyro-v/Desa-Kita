@@ -5,12 +5,12 @@ A simple citizen reporting web application built using FastAPI.
 ## Features
 
 - User authentication
-- Report system
-- Report status management
 - Admin dashboard
 - Announcement system
-- Responsive UI
+- Report system
+- Report status management
 - Report inspection page
+- Responsive UI
 
 ## Tech Stack
 
@@ -20,6 +20,7 @@ A simple citizen reporting web application built using FastAPI.
 - SQLite
 - HTML
 - CSS
+- JS
 
 ## Installation
 

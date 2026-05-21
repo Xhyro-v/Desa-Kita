@@ -19,18 +19,18 @@
     --radius-sm: 8px;
 }
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background: var(--color-bg);
     color: var(--color-text-main);
     margin: 0;
     padding: 20px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 h1,

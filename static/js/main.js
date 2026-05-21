@@ -36,7 +36,8 @@ const modalMessage = document.getElementById("modalMessage");
 
 const formGlobal = document.getElementById("formGlobal");
 
-// fungsi buka modal (INI KUNCI NYA)
+
+
 function openModal({ title, message, action }) {
     modalTitle.innerText = title;
     modalMessage.innerText = message;
@@ -45,24 +46,30 @@ function openModal({ title, message, action }) {
     modal.style.display = "flex";
 }
 
-// tombol batal
+
 btnBatal.addEventListener("click", () => {
     modal.style.display = "none";
     selectedAction = null;
 });
 
-// klik luar
+
+
+
+
 modal.addEventListener("click", (e) => {
     if (e.target === modal) {
         modal.style.display = "none";
     }
 });
 
-// konfirmasi
+
+
+
+
 btnKonfirmasi.addEventListener("click", () => {
     if (!selectedAction) return;
 
-    selectedAction(); // jalankan aksi apapun
+    selectedAction(); 
     modal.style.display = "none";
 });
 

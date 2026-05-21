@@ -1,29 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+
 :root {
-  --color-primary: #2d6a4f;
-  --color-primary-light: #74c69d;
-  --color-secondary: #1b4332;
-  --color-accent: #ffb703;
-  --color-info: #3a86ff;
-  --color-success: #52b788;
-  --color-danger: #e63946;
-  --color-bg: #f4f7f6;
-  --color-card: #ffffff;
-  --color-text-main: #2d3436;
-  --color-text-muted: #636e72;
-  --color-border: #dfe6e9;
+    --color-primary: #2d6a4f;
+    --color-primary-light: #74c69d;
+    --color-secondary: #1b4332;
+    --color-accent: #ffb703;
+    --color-info: #3a86ff;
+    --color-success: #52b788;
+    --color-danger: #e63946;
+
+    --color-bg: #f4f7f6;
+    --color-card: #ffffff;
+
+    --color-text-main: #2d3436;
+    --color-text-muted: #636e72;
+    --color-border: #dfe6e9;
+    --radius-sm: 8px;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text-main);
+    margin: 0;
+    padding: 20px;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
-  background-color: var(--color-bg);
-  font-family: 'Inter', sans-serif;
-  color: var(--color-text-main);
-  padding: 20px;
 }
 
 .dashboard {

@@ -1,6 +1,35 @@
-/* Style untuk tombol utama di halaman web */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+
+:root {
+    --color-primary: #2d6a4f;
+    --color-primary-light: #74c69d;
+    --color-secondary: #1b4332;
+    --color-accent: #ffb703;
+    --color-info: #3a86ff;
+    --color-success: #52b788;
+    --color-danger: #e63946;
+
+    --color-bg: #f4f7f6;
+    --color-card: #ffffff;
+
+    --color-text-main: #2d3436;
+    --color-text-muted: #636e72;
+    --color-border: #dfe6e9;
+    --radius-sm: 8px;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text-main);
+    margin: 0;
+    padding: 20px;
+}
+
+
 .btn-buka-modal {
-    background-color: #dc3545;
+    background-color: var(--color-danger);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -9,21 +38,19 @@
     font-weight: bold;
 }
 
-/* Overlay (Latar belakang gelap yang menutupi seluruh layar) */
 .modal-overlay {
-    display: none; /* Tersembunyi secara default */
+    display: none; 
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Efek gelap transparan */
+    background-color: rgba(0, 0, 0, 0.5); 
     z-index: 9999;
     justify-content: center;
     align-items: center;
 }
 
-/* Card Utama Pembuat Peringatan */
 .modal-card {
     background-color: #ffffff;
     padding: 30px;
@@ -34,7 +61,6 @@
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     
-    /* Animasi halus saat card muncul */
     animation: muncul 0.3s ease-out;
 }
 
@@ -55,7 +81,6 @@
     margin-bottom: 25px;
 }
 
-/* Flexbox untuk merapikan posisi tombol */
 .modal-buttons {
     display: flex;
     gap: 12px;
@@ -79,12 +104,11 @@
 .btn-batal:hover { background-color: #e4e4e4; }
 
 .btn-hapus {
-    background-color: #dc3545;
+    background-color: var(--color-danger);
     color: white;
 }
-.btn-hapus:hover { background-color: #c82333; }
+.btn-hapus:hover { background-color: var(--color-danger); }
 
-/* Animasi CSS Keyframes */
 @keyframes muncul {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }

@@ -23,21 +23,32 @@ def register_page(request: Request):
         }
     )
 
-
 @router.post("/register")
 def register_user(
     request: Request,
     username: str = Form(...),
     password: str = Form(...),
+    confirm_pass: str = Form(...),
     db: Session = Depends(get_db)
 ):
+
+    if confirm_pass != password:
+        return templates.TemplateResponse(
+            "register.html",
+            {
+                "request": request,
+                "message": "Password tidak sama!",
+                "username": username
+            }
+        )
+
     hashed_password = bcrypt.hash(password)
 
     new_user = User(
         username=username,
         password=hashed_password
     )
-
+  
     try:
         db.add(new_user)
         db.commit()
@@ -50,7 +61,7 @@ def register_user(
                 "message": "Username sudah digunakan"
             }
         )
-
+  
     user = db.query(User).filter(User.username == username).first()
 
     request.session["user"] = user.username

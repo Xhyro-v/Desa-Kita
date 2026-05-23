@@ -78,7 +78,7 @@ def post_announ(
     db.add(new_announcement)
     db.commit()
 
-    return RedirectResponse("/announcement", status_code=303)
+    return RedirectResponse(f"/announcement?success=1&id={new_announcement.id}", status_code=303)
 
 
 @router.post("/announcement/delete/{ann_id}")
@@ -100,4 +100,4 @@ def delete_announ(
     db.delete(announcement)
     db.commit()
 
-    return RedirectResponse("/announcement", status_code=303)
+    return RedirectResponse(f"/announcement?success=1&id={announcement.id}", status_code=303)

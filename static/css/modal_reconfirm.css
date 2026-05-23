@@ -109,6 +109,16 @@ body {
 }
 .btn-hapus:hover { background-color: var(--color-danger); }
 
+.modal-buttons .btn-success {
+    background-color: var(--color-success);
+    color: white;
+}
+
+.modal-buttons .btn-success:hover {
+    background-color: #40916c;
+}
+
+
 @keyframes muncul {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }

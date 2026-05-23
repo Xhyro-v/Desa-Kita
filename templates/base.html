@@ -95,6 +95,26 @@
             </div>
         </div>
 
+        <div id="modalSuccess" class="modal-overlay">
+            <div class="modal-card success">
+                <div class="modal-icon">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <h2>Laporan Berhasil!</h2>
+                <p>Laporan kamu sudah dikirim </p>
+
+                <div class="modal-buttons">
+                    <button class="btn-batal" onclick="closeSuccessModal()">
+                        Tutup
+                    </button>
+                    <button id="btnCekLaporan" class="btn-success">
+                        Cek Laporan
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <form id="formGlobal" method="post" style="display: none"></form>
 
         <main>{% block content %} {% endblock %}</main>

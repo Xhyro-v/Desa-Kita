@@ -10,7 +10,7 @@
 {% if role == "admin" %}
 <div class="card admin-form">
     <h3>Buat Pengumuman Baru</h3>
-    <form method="post" action="/announcement">
+    <form method="post" id="formAnnouncement" action="/announcement">
         <div class="form-group">
             <label>Judul Pengumuman</label>
             <input name="title" required minlength="3" />
@@ -32,8 +32,8 @@
             </label>
         </div>
 
-        <button type="submit" class="btn-post">
-            <i class="fa-solid fa-paper-plane"></i> Posting
+        <button type="button" class="btn-post" onclick="handleSubmitAnnouncement()">
+            <span></span><i class="fa-solid fa-paper-plane"></i> Kirim Pengumuman
         </button>
     </form>
 </div>

@@ -1,62 +1,77 @@
-# Citizen Report App
+# Citizen Report App (Desa-Kita)
 
-A simple citizen reporting web application built using FastAPI.
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=FFD43B)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-D71F27?style=for-the-badge&logo=sqlalchemy&logoColor=white)
 
-## Features
+Aplikasi web untuk pelaporan warga yang dibuat dengan tujuan sederhana: membuat sistem RT/RW yang biasanya ribet jadi lebih rapi, cepat, dan bisa dilacak.
 
-- User authentication
-- Admin dashboard
-- Announcement system
-- Report system
-- Report status management
-- Report inspection page
-- Responsive UI
+---
 
-## Tech Stack
+## Latar Belakang & Solusi
 
-- FastAPI
-- SQLAlchemy
-- Jinja2
-- SQLite
-- HTML
-- CSS
-- JS
+### Masalah yang Sering Terjadi
+Di banyak lingkungan RT/RW, pelaporan masih pakai cara lama:
+- Kertas (yang gampang hilang atau numpuk)
+- Chat grup (yang tenggelam di antara pesan lain)
+- Atau Laporan secara langsung
 
-## Installation
+Akhirnya:
+- Laporan sering terlewat
+- Status nggak jelas
+- Pengurus juga bingung tracking mana yang sudah ditangani
 
-Clone repository:
+### Solusi yang Dibuat
+**Desa-Kita** hadir sebagai platform terpusat.
 
-```bash
-git clone https://github.com/Xhyro-v/Desa-Kita.git
-```
+Warga bisa:
+- Kirim laporan langsung (real-time)
+- Lihat status laporan
+- Dapat pengumuman resmi tanpa harus scroll chat panjang
 
-Install dependencies:
+Di sisi lain, pengurus bisa:
+- Mengelola laporan lebih terstruktur
+- Memantau progress tanpa ribet
 
-```bash
-pip install -r requirements.txt
-```
+Intinya, lebih transparan dan tidak membuang waktu.
 
-Run server:
+---
 
-```bash
-uvicorn main:app --reload
-```
-or
-```bash
-python -m uvicorn main:app --reload
-```
+## Demo Aplikasi
 
-## Report Status
+### Video Pemakaian
+Berisi cara penggunaan dari sisi warga dan admin.
 
-- Pending
-- In Progress
-- Approved
-- Rejected
+[► Tonton Video Demo Pemakaian](Link_Video_YouTube_Atau_Drive_Lu_Di_Sini)
 
-## Future Plans
+### Screenshot Tampilan
 
-- Image upload
+| Halaman Warga | Dashboard Admin |
+| :--- | :--- |
+| ![Warga UI](https://via.placeholder.com/400x250?text=Screenshot+Halaman+Warga) | ![Admin UI](https://via.placeholder.com/400x250?text=Screenshot+Dashboard+Admin) |
 
-## Author
+| Pengumuman | Status Laporan |
+| :--- | :--- |
+| ![Announcement UI](https://via.placeholder.com/400x250?text=Screenshot+Pengumuman) | ![Status UI](https://via.placeholder.com/400x250?text=Screenshot+Status+Laporan) |
 
-Made by Naufal(Me :])
+---
+
+## Fitur Utama
+
+- Sistem autentikasi dengan role (Warga & Admin)
+- Dashboard khusus admin untuk monitoring
+- Sistem pengumuman terpusat
+- Manajemen laporan dengan halaman detail
+- Status laporan yang berubah secara dinamis
+- Tampilan responsive (HP dan desktop masih enak dipakai)
+
+---
+
+## Alur Status Laporan
+
+```mermaid
+graph LR
+    A[Pending] --> B[In Progress]
+    B --> C[Approved]
+    B --> D[Rejected]

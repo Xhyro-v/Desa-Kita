@@ -49,7 +49,7 @@ Berisi cara penggunaan dari sisi warga dan admin.
 
 | Halaman Warga | Dashboard Admin |
 | :--- | :--- |
-| ![Warga UI](https://via.placeholder.com/400x250?text=Screenshot+Halaman+Warga) | ![Admin UI](https://via.placeholder.com/400x250?text=Screenshot+Dashboard+Admin) |
+| ![Warga UI](https://github.com/user-attachments/assets/ce574b7a-c26e-41b9-a4dd-4c9cea0758ee) | ![Admin UI](https://via.placeholder.com/400x250?text=Screenshot+Dashboard+Admin) |
 
 | Pengumuman | Status Laporan |
 | :--- | :--- |

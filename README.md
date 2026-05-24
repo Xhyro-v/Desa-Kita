@@ -51,9 +51,11 @@ Berisi cara penggunaan dari sisi warga dan admin.
 | :--- | :--- |
 | ![Warga UI](https://github.com/user-attachments/assets/ce574b7a-c26e-41b9-a4dd-4c9cea0758ee) | ![Admin UI](https://via.placeholder.com/400x250?text=Screenshot+Dashboard+Admin) |
 
+
 | Pengumuman | Status Laporan |
 | :--- | :--- |
 | ![Announcement UI](https://via.placeholder.com/400x250?text=Screenshot+Pengumuman) | ![Status UI](https://via.placeholder.com/400x250?text=Screenshot+Status+Laporan) |
+
 
 ---
 

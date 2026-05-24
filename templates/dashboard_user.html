@@ -69,15 +69,19 @@
         </div>
 
         <div class="stat-card-mini approved">
-            <div class="mini-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="mini-icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
             <div class="mini-data">
                 <span class="label">Approved</span>
                 <span class="value">{{ approved_reports }}</span>
             </div>
         </div>
-  
+
         <div class="stat-card-mini rejected">
-            <div class="mini-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+            <div class="mini-icon">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
             <div class="mini-data">
                 <span class="label">Rejected</span>
                 <span class="value">{{ rejected_reports }}</span>
@@ -92,43 +96,36 @@
                 <a href="/report/laporan-saya" class="see-all">Lihat Semua</a>
             </div>
 
-            {% for rep in latest_reports %}
-            {% if rep.status == "pending" or "process" %}
-              <div class="report-card">
-                  <div class="report-top">
-                      <div class="report-info">
-                          <h4>{{ rep.type }}</h4>
-                          <small>{{ rep.created_at.strftime("%d %b %Y") }}</small>
-                      </div>
-  
-                      
-                      {% if rep.status == "pending" %}
-                          <span class="status pending">Pending</span>
-                      
-                      {% elif rep.status == "process" %}
-                          <span class="status process">Processed</span>
-                      
-                      {% endif %}
-            {% else %}
-              <div class="empty">Tidak ada laporan terbaru</div>
-            {% endif %}
-    
-                  </div>
-                    <p class="description">
-                        {% if rep.description|length > 30 %}
-                           {{ rep.description[:45] }}...
-                        {% else %}
-                          {{ rep.description }}
-                        {% endif %}
-                    </p>
-                  <div class="report-footer">
-                      <a class="btn-detail" href="/report/{{rep.id}}/inspect">
-                          Detail
-                      </a>
-                  </div>
-              </div>
-              <div class="report-card">
-              
+            {% for rep in latest_reports %} {% if rep.status == "pending" or
+            "process" %}
+            <div class="report-card">
+                <div class="report-top">
+                    <div class="report-info">
+                        <h4>{{ rep.type }}</h4>
+                        <small>{{ rep.created_at.strftime("%d %b %Y") }}</small>
+                    </div>
+
+                    {% if rep.status == "pending" %}
+                    <span class="status pending">Pending</span>
+
+                    {% elif rep.status == "process" %}
+                    <span class="status process">Processed</span>
+
+                    {% endif %} {% else %}
+                    <div class="empty">Tidak ada laporan terbaru</div>
+                    {% endif %}
+                </div>
+                <p class="description">
+                    {% if rep.description|length > 30 %} {{ rep.description[:45]
+                    }}... {% else %} {{ rep.description }} {% endif %}
+                </p>
+                <div class="report-footer">
+                    <a class="btn-detail" href="/report/{{rep.id}}/inspect">
+                        Detail
+                    </a>
+                </div>
+            </div>
+            <div class="report-card">
                 <a href="report" class="announcement-card create-announcement">
                     <div class="ann-accent dashed"></div>
                     <div class="create-content">
@@ -136,42 +133,35 @@
                         <span>Buat Laporan</span>
                     </div>
                 </a>
-              </div>
-        {% endfor %}
+            </div>
+            {% endfor %}
         </section>
 
         <aside class="announcement-section">
-          {% for ann in latest_announcements %}
             <div class="section-header">
                 <h3>Pengumuman</h3>
             </div>
+            {% for ann in latest_announcements %}
 
             <div class="announcement-card">
-              {% if ann.priority == "penting" %}
+                {% if ann.priority == "penting" %}
                 <div class="ann-accent"></div>
                 <h4>{{ ann.title }}</h4>
                 <p>
-                   {% if ann.content|length > 30 %}
-                      {{ ann.content[:45] }}...
-                   {% else %}
-                       {{ ann.content }}
-                   {% endif %}
+                    {% if ann.content|length > 30 %} {{ ann.content[:45] }}...
+                    {% else %} {{ ann.content }} {% endif %}
                 </p>
-              {% else %}
+                {% else %}
                 <div class="ann-accent blue"></div>
                 <h4>{{ ann.title }}</h4>
                 <p>
-                   {% if ann.content|length > 30 %}
-                      {{ ann.content[:45] }}...
-                   {% else %}
-                       {{ ann.content }}
-                   {% endif %}
+                    {% if ann.content|length > 30 %} {{ ann.content[:45] }}...
+                    {% else %} {{ ann.content }} {% endif %}
                 </p>
-              {% endif %}
+                {% endif %}
             </div>
 
-
-          {% endfor %}
+            {% endfor %}
         </aside>
     </div>
 </div>

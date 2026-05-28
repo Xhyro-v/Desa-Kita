@@ -38,24 +38,69 @@ Intinya, lebih transparan dan tidak membuang waktu.
 
 ---
 
+## Installation
+
+Clone repository:
+
+```bash
+git clone https://github.com/Xhyro-v/Desa-Kita.git
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run server:
+
+```bash
+uvicorn main:app --reload
+```
+or
+```bash
+python -m uvicorn main:app --reload
+```
+
+---
+
 ## Demo Aplikasi
+
+### Screenshot Tampilan
+
+- UI User/Warga
+
+| Halaman Warga (1/2) | Halaman Warga(2/2) |
+| :--- | :--- |
+| ![Warga UI](https://github.com/user-attachments/assets/f1824c9f-9729-4ac2-b9f7-3f95d4f7ad2e) | ![Warga UI2](https://github.com/user-attachments/assets/a22b998a-2c07-417f-b6a3-e08716c5a8e7) |
+
+- UI Pelaporan User/Warga
+
+| Laporan | Inpeksi Laporan | Status Laporan |
+| :--- | :--- | :--- |
+| ![Laporan UI](https://github.com/user-attachments/assets/6ca15fd8-d1cb-46ce-beb3-482a68b9d978) | ![Inspect](https://github.com/user-attachments/assets/2941a2c1-a314-4015-ab42-b9d1dd7e911b) | ![Status Lap UI](https://github.com/user-attachments/assets/dbcca19b-2e5a-403e-9b03-61157e723c0b) |
+
+- UI Admin/Moderator
+
+| Pengumuman | Inpeksi Laporan | Status Laporan |
+| :--- | :--- | :--- |
+| ![Announcement UI](https://github.com/user-attachments/assets/17c7ebfb-cad0-4e60-b6d7-5ca5f5a672bc) | ![Inspect](https://github.com/user-attachments/assets/8c0b02d4-b540-4967-93e3-1c055eca926b) | ![Status UI](https://github.com/user-attachments/assets/8c9d5f2f-a086-4c1f-b85f-28a7c9ae0a06) |
 
 ### Video Pemakaian
 Berisi cara penggunaan dari sisi warga dan admin.
 
 [► Tonton Video Demo Pemakaian](Link_Video_YouTube_Atau_Drive_Lu_Di_Sini)
 
-### Screenshot Tampilan
+---
 
-| Halaman Warga | Dashboard Admin |
-| :--- | :--- |
-| ![Warga UI](https://github.com/user-attachments/assets/ce574b7a-c26e-41b9-a4dd-4c9cea0758ee) | ![Admin UI](https://via.placeholder.com/400x250?text=Screenshot+Dashboard+Admin) |
+## Alur Status Laporan
 
-
-| Pengumuman | Status Laporan |
-| :--- | :--- |
-| ![Announcement UI](https://via.placeholder.com/400x250?text=Screenshot+Pengumuman) | ![Status UI](https://via.placeholder.com/400x250?text=Screenshot+Status+Laporan) |
-
+```mermaid
+graph LR
+    A[Pending] --> B[In Progress]
+    B --> C[Approved]
+    B --> D[Rejected]
+```
 
 ---
 
@@ -70,10 +115,3 @@ Berisi cara penggunaan dari sisi warga dan admin.
 
 ---
 
-## Alur Status Laporan
-
-```mermaid
-graph LR
-    A[Pending] --> B[In Progress]
-    B --> C[Approved]
-    B --> D[Rejected]

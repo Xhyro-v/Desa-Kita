@@ -86,11 +86,6 @@ python -m uvicorn main:app --reload
 | :--- | :--- | :--- |
 | ![Announcement UI](https://github.com/user-attachments/assets/17c7ebfb-cad0-4e60-b6d7-5ca5f5a672bc) | ![Inspect](https://github.com/user-attachments/assets/8c0b02d4-b540-4967-93e3-1c055eca926b) | ![Status UI](https://github.com/user-attachments/assets/8c9d5f2f-a086-4c1f-b85f-28a7c9ae0a06) |
 
-### Video Pemakaian
-Berisi cara penggunaan dari sisi warga dan admin.
-
-[► Tonton Video Demo Pemakaian](Link_Video_YouTube_Atau_Drive_Lu_Di_Sini)
-
 ---
 
 ## Alur Status Laporan

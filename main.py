@@ -1,4 +1,5 @@
 import uvicorn, os
+from dotenv import load_dotenv
 from typing import Annotated
 from fastapi import Depends, FastAPI, HTTPException, Request, status, APIRouter
 from fastapi.exceptions import RequestValidationError
@@ -12,7 +13,7 @@ from routers import auth, dashboard, announcement, report
 from db.database import Base, engine
 from starlette.middleware.sessions import SessionMiddleware
 
-
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 app = FastAPI()
 
@@ -20,7 +21,7 @@ Base.metadata.create_all(bind=engine)
 
 router = APIRouter()
 
-app.add_middleware(SessionMiddleware, secret_key="DeaTriani.L.W")
+app.add_middleware(SessionMiddleware,SECRET_KEY)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.include_router(auth.router, prefix="/auth")
 app.include_router(dashboard.router)

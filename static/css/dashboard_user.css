@@ -38,7 +38,6 @@ body {
   margin: 0 auto;
 }
 
-/* HEADER */
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -66,7 +65,6 @@ body {
   object-fit: cover;
 }
 
-/* GREETING */
 .greeting-section {
   margin-bottom: 25px;
 }
@@ -80,7 +78,6 @@ body {
   color: var(--color-text-muted);
 }
 
-/* STATS GRID */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -89,9 +86,8 @@ body {
   margin-bottom: 30px;
 }
 
-/* Card Besar (Mobile full width, Desktop span 2 rows) */
 .stat-card.primary {
-  grid-column: span 3; /* Mobile: Full */
+  grid-column: span 3; 
   background: var(--color-primary);
   color: white;
   padding: 25px;
@@ -116,7 +112,6 @@ body {
 
 .stat-icon-main svg { width: 50px; height: 50px; opacity: 0.3; }
 
-/* Card Kecil */
 .stat-card-mini {
   background: var(--color-card);
   padding: 15px;
@@ -141,18 +136,12 @@ body {
 .mini-data .label { font-size: 12px; color: var(--color-text-muted); display: block; }
 .mini-data .value { font-weight: 700; font-size: 18px; }
 
-/* LAYOUT MAIN CONTENT */
 .content-layout {
   display: grid;
   grid-template-columns: 1fr;
   gap: 30px;
 }
 
-@media (min-width: 992px) {
-  .content-layout {
-    grid-template-columns: 2fr 1fr;
-  }
-}
 
 .section-header {
   display: flex;
@@ -168,7 +157,6 @@ body {
   font-weight: 600;
 }
 
-/* REPORT CARDS */
 .report-card {
   background: var(--color-card);
   border-radius: 18px;
@@ -193,8 +181,15 @@ body {
   text-transform: uppercase;
 }
 
+.empty {
+    padding: 20px;
+    text-align: center;
+    color: #94a3b8;
+}
+
 .status.approved { background: #e6f7ef; color: var(--color-success); }
 .status.pending { background: #fff8e6; color: var(--color-accent); }
+.status.process { background: #eef; color: var(--color-info); }
 
 .report-card p {
   font-size: 14px;
@@ -204,6 +199,7 @@ body {
 }
 
 .btn-detail {
+  display: block;
   width: 100%;
   padding: 10px;
   border-radius: 10px;
@@ -213,11 +209,12 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
+  text-align: center;
+  text-decoration: none;
 }
 
 .btn-detail:hover { background: var(--color-primary-light); color: white; }
 
-/* ANNOUNCEMENT */
 .announcement-card {
   background: var(--color-card);
   padding: 15px;
@@ -241,164 +238,62 @@ body {
 .announcement-card h4 { font-size: 15px; margin-bottom: 5px; }
 .announcement-card p { font-size: 13px; color: var(--color-text-muted); }
 
-
-:root {
-  --sidebar-width: 260px;
+.create-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-text-muted);
 }
 
-/* SIDEBAR CORE */
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: calc(var(--sidebar-width) * -1); /* Tersembunyi di kiri */
-  width: var(--sidebar-width);
-  height: 100%;
-  background: var(--color-secondary); /* Hijau Gelap */
-  color: white;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1100;
-  box-shadow: 10px 0 30px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
+.create-content i {
+    font-size: 24px;
+    color: var(--color-primary);
 }
 
-.sidebar.active {
-  left: 0;
+.create-content span {
+    font-size: 13px;
+    font-weight: 600;
 }
 
-/* Header dalam Sidebar */
-.sidebar-header {
-  padding: 25px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+.ann-accent.dashed {
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--color-primary-light),
+        var(--color-primary-light) 5px,
+        transparent 5px,
+        transparent 10px
+    );
 }
 
-.sidebar-header h3 {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--color-primary-light);
+.announcement-card.create-announcement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; 
+    border: 2px dashed var(--color-border); 
+    background: transparent;
+    transition: all 0.3s ease;
+    min-height: 80px;  
 }
 
-.close-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 28px;
-  cursor: pointer;
-  opacity: 0.7;
+.announcement-card.create-announcement:hover {
+    background: rgba(45, 106, 79, 0.05);
+    border-color: var(--color-primary);
+    transform: translateY(-3px);
 }
 
-/* NAV LINKS */
-.sidebar-nav {
-  padding: 20px 15px;
-}
-
-.nav-link, .dropdown-btn {
-  width: 100%;
-  padding: 14px 18px;
-  color: rgba(255,255,255,0.8);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  border-radius: 12px;
-  border: none;
-  background: none;
-  font-size: 15px;
-  font-weight: 500;
-  transition: 0.3s;
-  cursor: pointer;
-  margin-bottom: 5px;
-}
-
-/* HOVER & ACTIVE STATE */
-.nav-link:hover, .dropdown-btn:hover {
-  background: rgba(255,255,255,0.1);
-  color: white;
-  padding-left: 22px; /* Efek geser sedikit */
-}
-
-.nav-link.active {
-  background: var(--color-primary);
-  color: white;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-/* DROPDOWN STYLES */
-.dropdown-btn .arrow {
-  margin-left: auto;
-  font-size: 10px;
-  transition: 0.3s;
-}
-
-.dropdown.open .arrow {
-  transform: rotate(180deg);
-}
-
-.dropdown-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
-  background: rgba(0,0,0,0.2);
-  border-radius: 0 0 12px 12px;
-  margin: -5px 0 10px 0;
-}
-
-.dropdown.open .dropdown-content {
-  max-height: 200px; /* Sesuaikan dengan jumlah isi */
-  padding: 10px 0;
-}
-
-.dropdown-content a {
-  padding: 10px 20px 10px 50px;
-  color: rgba(255,255,255,0.7);
-  display: block;
-  text-decoration: none;
-  font-size: 14px;
-  transition: 0.2s;
-}
-
-.dropdown-content a:hover {
-  color: var(--color-accent);
-}
-
-/* OVERLAY */
-.sidebar-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(4px);
-  display: none;
-  z-index: 1050;
-}
-
-.sidebar-overlay.active {
-  display: block;
-}
-
-/* Style untuk menu button di dashboard */
-#menu-btn {
-    cursor: pointer;
-    background: white;
-    border: 1px solid var(--color-border);
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 20px;
-    transition: 0.2s;
-}
-
-#menu-btn:hover {
-    background: var(--color-bg);
+.ann-accent.dashed {
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--color-primary-light),
+        var(--color-primary-light) 5px,
+        transparent 5px,
+        transparent 10px
+    );
 }
 
 
-/* RESPONSIVE FIX FOR STATS */
 @media (max-width: 767px) {
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);

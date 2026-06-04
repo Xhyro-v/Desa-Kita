@@ -38,7 +38,6 @@ body {
   margin: 0 auto;
 }
 
-/* HEADER */
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -66,7 +65,6 @@ body {
   object-fit: cover;
 }
 
-/* GREETING */
 .greeting-section {
   margin-bottom: 25px;
 }
@@ -80,7 +78,6 @@ body {
   color: var(--color-text-muted);
 }
 
-/* STATS GRID */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -89,9 +86,8 @@ body {
   margin-bottom: 30px;
 }
 
-/* Card Besar (Mobile full width, Desktop span 2 rows) */
 .stat-card.primary {
-  grid-column: span 3; /* Mobile: Full */
+  grid-column: span 3;
   background: var(--color-primary);
   color: white;
   padding: 25px;
@@ -116,7 +112,6 @@ body {
 
 .stat-icon-main svg { width: 50px; height: 50px; opacity: 0.3; }
 
-/* Card Kecil */
 .stat-card-mini {
   background: var(--color-card);
   padding: 15px;
@@ -141,7 +136,6 @@ body {
 .mini-data .label { font-size: 12px; color: var(--color-text-muted); display: block; }
 .mini-data .value { font-weight: 700; font-size: 18px; }
 
-/* LAYOUT MAIN CONTENT */
 .content-layout {
   display: grid;
   grid-template-columns: 1fr;
@@ -168,7 +162,6 @@ body {
   font-weight: 600;
 }
 
-/* REPORT CARDS */
 .report-card {
   background: var(--color-card);
   border-radius: 18px;
@@ -217,7 +210,6 @@ body {
 
 .btn-detail:hover { background: var(--color-primary-light); color: white; }
 
-/* ANNOUNCEMENT */
 .announcement-card {
   background: var(--color-card);
   padding: 15px;
@@ -246,14 +238,13 @@ body {
   --sidebar-width: 260px;
 }
 
-/* SIDEBAR CORE */
 .sidebar {
   position: fixed;
   top: 0;
-  left: calc(var(--sidebar-width) * -1); /* Tersembunyi di kiri */
+  left: calc(var(--sidebar-width) * -1);
   width: var(--sidebar-width);
   height: 100%;
-  background: var(--color-secondary); /* Hijau Gelap */
+  background: var(--color-secondary); 
   color: white;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1100;
@@ -266,7 +257,6 @@ body {
   left: 0;
 }
 
-/* Header dalam Sidebar */
 .sidebar-header {
   padding: 25px;
   display: flex;
@@ -291,7 +281,6 @@ body {
   opacity: 0.7;
 }
 
-/* NAV LINKS */
 .sidebar-nav {
   padding: 20px 15px;
 }
@@ -314,11 +303,10 @@ body {
   margin-bottom: 5px;
 }
 
-/* HOVER & ACTIVE STATE */
 .nav-link:hover, .dropdown-btn:hover {
   background: rgba(255,255,255,0.1);
   color: white;
-  padding-left: 22px; /* Efek geser sedikit */
+  padding-left: 22px;
 }
 
 .nav-link.active {
@@ -327,7 +315,6 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-/* DROPDOWN STYLES */
 .dropdown-btn .arrow {
   margin-left: auto;
   font-size: 10px;
@@ -348,8 +335,7 @@ body {
 }
 
 .dropdown.open .dropdown-content {
-  max-height: 200px; /* Sesuaikan dengan jumlah isi */
-  padding: 10px 0;
+  max-height: 200px;
 }
 
 .dropdown-content a {
@@ -365,7 +351,6 @@ body {
   color: var(--color-accent);
 }
 
-/* OVERLAY */
 .sidebar-overlay {
   position: fixed;
   top: 0;
@@ -382,7 +367,6 @@ body {
   display: block;
 }
 
-/* Style untuk menu button di dashboard */
 #menu-btn {
     cursor: pointer;
     background: white;
@@ -398,7 +382,6 @@ body {
 }
 
 
-/* RESPONSIVE FIX FOR STATS */
 @media (max-width: 767px) {
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);

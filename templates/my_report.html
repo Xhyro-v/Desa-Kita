@@ -4,6 +4,10 @@
     type="text/css"
     href="{{ url_for('static', path='css/report.css') }}"
 />
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+/>
 <title>My Report</title>
 {%endblock%} {% block content %}
 <div style="text-align: center; padding: 24px 0 8px">
@@ -69,7 +73,15 @@
             </tbody>
         </table>
         {% else %}
-        <div class="empty">Belum ada laporan</div>
+        <div class="report-card-empty">
+            <a href="/report" class="empty-card create-report">
+                <div class="accent dashed"></div>
+                <div class="create-content">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Buat Laporan</span>
+                </div>
+            </a>
+        </div>
         {% endif %}
     </div>
 </div>

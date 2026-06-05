@@ -87,7 +87,11 @@ body {
 }
 
 .stat-card.primary {
+<<<<<<< HEAD
   grid-column: span 3;
+=======
+  grid-column: span 3; 
+>>>>>>> v2
   background: var(--color-primary);
   color: white;
   padding: 25px;
@@ -142,11 +146,6 @@ body {
   gap: 30px;
 }
 
-@media (min-width: 992px) {
-  .content-layout {
-    grid-template-columns: 2fr 1fr;
-  }
-}
 
 .section-header {
   display: flex;
@@ -186,8 +185,15 @@ body {
   text-transform: uppercase;
 }
 
+.empty {
+    padding: 20px;
+    text-align: center;
+    color: #94a3b8;
+}
+
 .status.approved { background: #e6f7ef; color: var(--color-success); }
 .status.pending { background: #fff8e6; color: var(--color-accent); }
+.status.process { background: #eef; color: var(--color-info); }
 
 .report-card p {
   font-size: 14px;
@@ -197,6 +203,7 @@ body {
 }
 
 .btn-detail {
+  display: block;
   width: 100%;
   padding: 10px;
   border-radius: 10px;
@@ -206,6 +213,8 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
+  text-align: center;
+  text-decoration: none;
 }
 
 .btn-detail:hover { background: var(--color-primary-light); color: white; }
@@ -233,11 +242,15 @@ body {
 .announcement-card h4 { font-size: 15px; margin-bottom: 5px; }
 .announcement-card p { font-size: 13px; color: var(--color-text-muted); }
 
-
-:root {
-  --sidebar-width: 260px;
+.create-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-text-muted);
 }
 
+<<<<<<< HEAD
 .sidebar {
   position: fixed;
   top: 0;
@@ -251,36 +264,55 @@ body {
   box-shadow: 10px 0 30px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
+=======
+.create-content i {
+    font-size: 24px;
+    color: var(--color-primary);
+>>>>>>> v2
 }
 
-.sidebar.active {
-  left: 0;
+.create-content span {
+    font-size: 13px;
+    font-weight: 600;
 }
 
+<<<<<<< HEAD
 .sidebar-header {
   padding: 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgba(255,255,255,0.1);
+=======
+.ann-accent.dashed {
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--color-primary-light),
+        var(--color-primary-light) 5px,
+        transparent 5px,
+        transparent 10px
+    );
+>>>>>>> v2
 }
 
-.sidebar-header h3 {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--color-primary-light);
+.announcement-card.create-announcement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; 
+    border: 2px dashed var(--color-border); 
+    background: transparent;
+    transition: all 0.3s ease;
+    min-height: 80px;  
 }
 
-.close-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 28px;
-  cursor: pointer;
-  opacity: 0.7;
+.announcement-card.create-announcement:hover {
+    background: rgba(45, 106, 79, 0.05);
+    border-color: var(--color-primary);
+    transform: translateY(-3px);
 }
 
+<<<<<<< HEAD
 .sidebar-nav {
   padding: 20px 15px;
 }
@@ -379,6 +411,16 @@ body {
 
 #menu-btn:hover {
     background: var(--color-bg);
+=======
+.ann-accent.dashed {
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--color-primary-light),
+        var(--color-primary-light) 5px,
+        transparent 5px,
+        transparent 10px
+    );
+>>>>>>> v2
 }
 
 

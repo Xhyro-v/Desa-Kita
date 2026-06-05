@@ -238,23 +238,6 @@ body {
 .announcement-card h4 { font-size: 15px; margin-bottom: 5px; }
 .announcement-card p { font-size: 13px; color: var(--color-text-muted); }
 
-.announcement-card.create-announcement {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none; 
-    border: 2px dashed var(--color-border); 
-    background: transparent;
-    transition: all 0.3s ease;
-    min-height: 80px; 
-}
-
-.announcement-card.create-announcement:hover {
-    background: rgba(45, 106, 79, 0.05); 
-    border-color: var(--color-primary);
-    transform: translateY(-3px);
-}
-
 .create-content {
     display: flex;
     flex-direction: column;
@@ -298,24 +281,6 @@ body {
     background: rgba(45, 106, 79, 0.05);
     border-color: var(--color-primary);
     transform: translateY(-3px);
-}
-
-.create-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    color: var(--color-text-muted);
-}
-
-.create-content i {
-    font-size: 24px;
-    color: var(--color-primary);
-}
-
-.create-content span {
-    font-size: 13px;
-    font-weight: 600;
 }
 
 .ann-accent.dashed {

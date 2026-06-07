@@ -97,8 +97,7 @@
                 <a href="/admin/report" class="see-all">Lihat Semua</a>
             </div>
 
-            {% for rep in latest_reports %} {% if rep.status == "pending" or
-            "process" %}
+            {% if latest_reports %} {% for rep in latest_reports %}
             <div class="report-card">
                 <div class="report-top">
                     <div class="report-info">
@@ -111,22 +110,25 @@
 
                     {% elif rep.status == "process" %}
                     <span class="status process">Processed</span>
-
-                    {% endif %} {% else %}
-                    <div class="empty">Tidak ada laporan terbaru</div>
                     {% endif %}
                 </div>
+
                 <p class="description">
                     {% if rep.description|length > 30 %} {{ rep.description[:45]
                     }}... {% else %} {{ rep.description }} {% endif %}
                 </p>
+
                 <div class="report-footer">
-                    <a class="btn-detail" href="/report/{{rep.id}}/inspect">
+                    <a class="btn-detail" href="/report/{{ rep.id }}/inspect">
                         Detail
                     </a>
                 </div>
             </div>
-            {% endfor %}
+            {% endfor %} {% else %}
+            <div class="report-card">
+                <div class="empty">Tidak ada laporan terbaru</div>
+            </div>
+            {% endif %}
         </section>
 
         <aside class="announcement-section">

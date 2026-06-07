@@ -188,8 +188,10 @@ body {
 }
 
 .status.approved { background: #e6f7ef; color: var(--color-success); }
-.status.pending { background: #fff8e6; color: var(--color-accent); }
-.status.process { background: #eef; color: var(--color-info); }
+.status.pending  { background: #fff8e6; color: var(--color-accent); }
+.status.process  { background: #eef4ff; color: var(--color-info); }
+.status.reject   { background: #fee2e2; color: var(--color-danger); }
+
 
 .report-card p {
   font-size: 14px;

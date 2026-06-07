@@ -243,7 +243,6 @@ h3 {
     border-radius: 99px;
 }
 
-
 .input-with-icon {
     position: relative;
 }
@@ -306,42 +305,62 @@ textarea {
 
 
 
-.report-card-empty {
-  background: var(--color-card);
-  border-radius: 13px;
-  padding: 20px;
-  margin-bottom: 0px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-  border: 1px solid var(--color-border);
+.empty-card {
+    background: var(--color-card);
+    border-radius: 11px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    border: 1px solid var(--color-border);
 }
 
-.announcement-card {
-  background: var(--color-card);
-  padding: 15px;
-  border-radius: 15px;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 15px;
-}
-
-.empty-card.create-report {
+.create-report {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none; 
-    border: 2px dashed var(--color-border); 
+    text-decoration: none;
+
+    min-height: 120px;
+
     background: transparent;
+    border: 2px dashed var(--color-border);
+    border-radius: 15px;
+
     transition: all 0.3s ease;
-    min-height: 80px;  
+    position: relative;
+    overflow: hidden;
 }
 
-.announcement-card.create-announcement:hover {
+.create-report:hover {
     background: rgba(45, 106, 79, 0.05);
     border-color: var(--color-primary);
     transform: translateY(-3px);
 }
 
-.accent.dashed {
+.create-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-text-muted);
+}
+
+.create-content i {
+    font-size: 28px;
+    color: var(--color-primary);
+}
+
+.create-content span {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.ann-accent.dashed {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+
     background: repeating-linear-gradient(
         to bottom,
         var(--color-primary-light),
@@ -350,26 +369,6 @@ textarea {
         transparent 10px
     );
 }
-
-.create-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    color: var(--color-text-muted);
-}
-
-.create-content i {
-    font-size: 24px;
-    color: var(--color-primary);
-}
-
-.create-content span {
-    font-size: 13px;
-    font-weight: 600;
-}
-
-
 
 @media (max-width: 768px) {
     .card-table table {

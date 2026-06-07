@@ -100,4 +100,5 @@ def delete_announ(
     db.delete(announcement)
     db.commit()
 
-    return RedirectResponse(f"/announcement?success=1&id={announcement.id}", status_code=303)
+    return RedirectResponse(
+      "/announcement?success=announcement_deleted", status_code=303)

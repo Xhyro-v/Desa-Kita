@@ -3,6 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
         <title>Inspeksi Laporan #{{ report.id }}</title>
         <link
             rel="stylesheet"
@@ -11,7 +15,7 @@
 
         <link
             rel="stylesheet"
-            href="{{ url_for('static', path='css/reconfirmation.css') }}"
+            href="{{ url_for('static', path='css/modal_reconfirm.css') }}"
         />
     </head>
 
@@ -107,6 +111,10 @@
         </div>
         <div id="modalKonfirmasi" class="modal-overlay">
             <div class="modal-card">
+                <div class="modal-icon">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+
                 <h2 id="modalTitle">Konfirmasi</h2>
                 <p id="modalMessage"></p>
 

@@ -73,7 +73,8 @@ def post_report(request: Request,
     db.add(new_report)
     db.commit()
 
-    return RedirectResponse(f"/report?success=1&id={new_report.id}", status_code=303)
+    return RedirectResponse(f"/report?success=report_created&id={new_report.id}", status_code=303
+    )
 
 
 

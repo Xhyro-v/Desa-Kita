@@ -130,11 +130,10 @@
                     </a>
                 </div>
             </div>
-
-            {% endfor %} {% else %}
+            {% endfor %} {% endif %} {% if latest_reports | length == 1 %}
 
             <div class="report-card">
-                <a href="report" class="announcement-card create-announcement">
+                <a href="/report" class="announcement-card create-announcement">
                     <div class="ann-accent dashed"></div>
                     <div class="create-content">
                         <i class="fa-solid fa-plus"></i>

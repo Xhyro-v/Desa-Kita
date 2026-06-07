@@ -32,7 +32,7 @@ def dashboard(request: Request, db: Session = Depends(get_db)):
         db.query(Report)
         .filter(Report.username == username)
         .order_by(Report.id.desc())
-        .limit(1)
+        .limit(2)
         .all()
     )
 

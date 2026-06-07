@@ -155,40 +155,39 @@ function closeSuccessModal() {
 window.onload = function () {
     const urlParams = new URLSearchParams(window.location.search);
 
-    if (urlParams.get("success") === "1") {
-        const modalSuccess = document.getElementById("modalSuccess");
+    const success = urlParams.get("success");
+
+    const modalSuccess = document.getElementById("modalSuccess");
+
+    if (!modalSuccess) return;
+
+    if (success === "report_created") {
+
         modalSuccess.style.display = "flex";
 
-        const currentPath = window.location.pathname;
-        const id = urlParams.get("id");
-        const btn = document.getElementById("btnCekLaporan");
+        document.getElementById("successTitle").innerText =
+            "Laporan Berhasil Dikirim";
 
-        if (currentPath.includes("report")) {
-            if (id) {
-                btn.onclick = () => {
-                    window.location.href = "/report/" + id + "/inspect";
-                };
-            } else {
-                btn.onclick = () => {
-                    window.location.href = "/report/laporan-saya";
-                };
-            }
-        }
+        document.getElementById("successMessage").innerText =
+            "Laporan Anda telah berhasil dikirim.";
 
-        else if (currentPath.includes("announcement")) {
-            btn.innerText = "Lihat Pengumuman";
-
-            if (id) {
-                btn.onclick = () => {
-                    window.location.href = "/announcement";
-                };
-            } else {
-                btn.onclick = () => {
-                    window.location.href = "/announcement";
-                };
-            }
-        }
-
-        window.history.replaceState({}, document.title, currentPath);
     }
+
+    else if (success === "announcement_deleted") {
+
+        modalSuccess.style.display = "flex";
+
+        document.getElementById("successTitle").innerText =
+            "Pengumuman Berhasil Dihapus";
+
+        document.getElementById("successMessage").innerText =
+            "Pengumuman telah dihapus.";
+
+    }
+
+    window.history.replaceState(
+        {},
+        document.title,
+        window.location.pathname
+    );
 };

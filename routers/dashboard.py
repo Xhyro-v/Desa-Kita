@@ -100,7 +100,13 @@ def admin_dashboard(request: Request, db: Session = Depends(get_db)):
   
     total_reports = db.query(Report).count()
 
-    latest_reports = db.query(Report).order_by(Report.id.desc()).limit(2).all()
+    latest_reports = (
+    db.query(Report)
+    .filter(Report.status.in_(["pending", "process"]))
+    .order_by(Report.id.desc())
+    .limit(2)
+    .all()
+)
 
     approved_reports = db.query(Report).filter(Report.status == "approved").count()
 
